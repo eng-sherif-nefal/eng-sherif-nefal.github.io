@@ -115,6 +115,7 @@ input:focus,textarea:focus{outline:3px solid #f2b705;outline-offset:1px}
 @media(max-width:560px){.ar-b{grid-template-columns:1fr 1fr}.ar-b button.del{grid-column:1/-1}}
 /*slim258*/.acts{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:4px!important;padding:5px 6px calc(5px + env(safe-area-inset-bottom))!important}.acts a,.acts button{min-height:44px!important;font-size:.72rem!important;border-radius:9px!important;padding:2px!important;line-height:1.15;flex-direction:column;gap:1px;white-space:nowrap;overflow:hidden}.acts i{font-style:normal;font-size:1.05rem;line-height:1}.acts .b5 b{min-width:1.3em;padding:0 4px;margin:0;font-size:.68rem}.wrap{padding-bottom:70px!important}.meter{padding:6px 12px!important;margin:0 0 10px!important}.meter .row{font-size:.9rem}.meter .bar{height:8px!important;margin-top:3px!important}.miss{font-size:.8rem!important;margin-top:2px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.toast{bottom:100px!important}
 /*lng264*/.lng264{display:inline-block;margin:6px 6px 0;padding:6px 16px;border-radius:20px;background:#0f2f57;color:#fff;font:800 .9rem Cairo,sans-serif;text-decoration:none;border:2px solid #f2b705}
+/*val265*/input.bad265{border-color:#c62828!important;background:#fff1f1!important}
 /*fold261*/.ch>label.cx,.ch>.sty.cx{display:none!important}.cxT{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:4px 14px;margin:4px;border:1.5px dashed var(--no,#888);border-radius:10px;background:transparent;color:inherit;font:inherit;font-size:.85rem;cursor:pointer}.prlk{opacity:.55;pointer-events:none;filter:grayscale(1)}
 /*fold259*/.yn.fx{display:none!important}#fxTog{display:block;width:calc(100% - 32px);margin:8px 16px;min-height:42px;border:2px dashed var(--line);border-radius:10px;background:var(--soft);color:var(--navy);font:800 .9rem Cairo,sans-serif;cursor:pointer}#fxTog[hidden]{display:none!important}.fxok{margin:8px 16px 0;padding:8px 12px;border-radius:10px;background:var(--okbg);color:var(--ok);font-weight:800;font-size:.9rem}.fxok[hidden]{display:none!important}/*pin259*/.meter{position:fixed!important;top:0!important;left:50%!important;transform:translateX(-50%);width:min(820px,calc(100% - 12px));z-index:15!important;margin:0!important;border-radius:0 0 14px 14px!important;border-top:0!important;box-shadow:0 6px 14px -8px #0006!important}
 </style>
@@ -122,7 +123,7 @@ input:focus,textarea:focus{outline:3px solid #f2b705;outline-offset:1px}
 <body>
 <header>
 
-<h1>نموذج طلب عرض سعر — مسؤول المبيعات / المهندس <small style="font-size:.6em;opacity:.8">R30</small></h1><div style="display:inline-block;margin-top:4px;background:#e7f6ec;color:#1b7a3d;border-radius:20px;padding:2px 12px;font:800 .8rem Cairo,sans-serif">✔ النموذج المعتمد — إصدار R30 — 26/11/2026</div><a class="lng264" href="en.html?v=R30">English</a>
+<h1>نموذج طلب عرض سعر — مسؤول المبيعات / المهندس <small style="font-size:.6em;opacity:.8">R31</small></h1><div style="display:inline-block;margin-top:4px;background:#e7f6ec;color:#1b7a3d;border-radius:20px;padding:2px 12px;font:800 .8rem Cairo,sans-serif">✔ النموذج المعتمد — إصدار R31 — 26/11/2026</div><a class="lng264" href="en.html?v=R31">English</a>
 <p>يُملأ ويُسلَّم مع ملفاته لمساعد <b style="font-weight:800;font-size:1.15em">م. شريف فتحي</b> <span style="font-weight:600;font-size:.88em">– مساعد المدير العام للشؤون الفنية</span></p>
 </header>
 <div class="wrap">
@@ -135,7 +136,7 @@ input:focus,textarea:focus{outline:3px solid #f2b705;outline-offset:1px}
 <div class="f"><span class="lbl">نوع العميل <span class="req">*</span></span><div class="ch" data-req="نوع العميل" data-group="c_type"><label><input type="radio" name="c_type" value="شركة">شركة</label><label><input type="radio" name="c_type" value="مؤسسة">مؤسسة</label><label><input type="radio" name="c_type" value="فرد">فرد</label><label><input type="radio" name="c_type" value="أخرى">أخرى</label></div><input id="c_type_o" name="c_type_o" type="text" placeholder="اكتب نوع العميل" style="margin-top:8px" hidden></div>
 <div class="f" id="box_co" hidden><label class="lbl" for="c_cont">اسم المهندس / المسؤول عند العميل</label><span class="hint">بيتكتب على الغلاف «السادة» + اسم الشركة، وتحته «سعادة المهندس» + الاسم ده</span><input id="c_cont" name="c_cont" type="text" placeholder="مثال: المهندس أحمد محمد"></div>
 <div class="f" id="box_in" hidden><span class="lbl">اللقب على الغلاف</span><span class="hint">«المكرم» لو العميل كاتبها كده، وإلا «سعادة»</span><div class="ch" data-group="c_ttl"><label><input type="radio" name="c_ttl" value="سعادة">سعادة</label><label><input type="radio" name="c_ttl" value="المكرم">المكرم</label><label><input type="radio" name="c_ttl" value="أخرى">أخرى</label></div><input id="c_ttl_o" name="c_ttl_o" type="text" placeholder="اكتب اللقب — مثال: الدكتور، الشيخ" style="margin-top:8px" hidden></div>
-<div class="f two"><div><label class="lbl" for="c_mob">جوال العميل</label><input id="c_mob" name="c_mob" type="tel" dir="ltr"></div><div><label class="lbl" for="c_mail">الإيميل</label><input id="c_mail" name="c_mail" type="email" dir="ltr"></div></div>
+<div class="f two"><div><label class="lbl" for="c_mob">جوال العميل</label><input id="c_mob" name="c_mob" type="tel" dir="ltr" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="05xxxxxxxx"><div class="warn" id="w_mob">الرقم غلط: لازم 10 أرقام ويبدأ بـ 05 (جوال) أو 01 (أرضي)</div></div><div><label class="lbl" for="c_mail">الإيميل</label><input id="c_mail" name="c_mail" type="email" dir="ltr" inputmode="email" autocomplete="off" placeholder="name@company.com"><div class="warn" id="w_mail">الإيميل غلط: حروف إنجليزي بس، ولازم فيه @ زي name@company.com</div></div></div>
 <div class="f"><label class="lbl" for="cbtn">المدينة <span class="req">*</span></label><input type="hidden" id="c_city" name="c_city" data-req="المدينة"><button type="button" class="cbtn" id="cbtn"><span id="cbtxt">اختار المدينة</span><b>▾</b></button><input id="c_city_o" name="c_city_o" type="text" placeholder="اكتب اسم المدينة" hidden style="margin-top:8px"></div>
 <div class="f"><label class="lbl" for="c_site">موقع المشروع</label><input id="c_site" name="c_site" type="text" placeholder="الحي — رقم القطعة — لوكيشن"></div>
 <div class="f"><label class="lbl" for="c_cons">المالك والاستشاري</label><span class="hint">لو العميل مقاول عام، أو فيه استشاري هيعتمد</span><input id="c_cons" name="c_cons" type="text"></div>
@@ -234,6 +235,7 @@ function req(){const out=[];frm.querySelectorAll('[data-req]').forEach(el=>{cons
  if(ok&&otherMissing(n))ok=false;
  out.push([el.dataset.req,ok]);
  if(n==='r_eng')out.push(['رقم اتصال العميل (أو بدون)',!!call()]);});
+ if(!phOk())out.push(['جوال العميل صحيح (10 أرقام يبدأ بـ 05 أو 01)',false]);if(!mlOk())out.push(['إيميل العميل صحيح (حروف إنجليزي و @)',false]);
  out.push([has('تكييف')?'ملف أساس لتسعير التكييف (BOQ / مخطط تكييف / Single Line / شوب دروينج / قائمة وحدات / سكتش المندوب)':'ملف أساس للتسعير (مخطط / BOQ / قائمة وحدات)',basis()]);
  DISC.forEach(d=>{if(d[2]&&has(d[0]))out.push(['بنود '+d[0],!!itv(d[2])]);});BSS.forEach(x=>{if(has(x[1])&&val(x[0]))out.push(['ملف أساس تسعير '+x[1]+' مرفق',bssOk(x[0])]);});
 
@@ -245,7 +247,7 @@ function req(){const out=[];frm.querySelectorAll('[data-req]').forEach(el=>{cons
  if(plan()){out.push(['بيانات حساب الأحمال (اعتيادي أو بيانات المبنى)',!!val('ld_mode')]);if(val('ld_mode')==='data')LD.forEach(x=>out.push(['حساب الأحمال: '+x[1],!!val(x[0])&&!otherMissing(x[0])]));}
  return out}
 function rows(){const r=rows0();if(plan())r.splice(3,0,['3-أ) بيانات حساب الأحمال',ldRows()]);return r}function rows0(){return [
- ['1) العميل',[['اسم العميل',val('c_name'),1],['نوع العميل',ov('c_type'),1],['المخاطَب على الغلاف',addr()],['الجوال',val('c_mob')],['الإيميل',val('c_mail')],['المدينة',city(),1],['موقع المشروع',val('c_site')],['المالك / الاستشاري',val('c_cons')]]],
+ ['1) العميل',[['اسم العميل',val('c_name'),1],['نوع العميل',ov('c_type'),1],['المخاطَب على الغلاف',addr()],phRow(),mlRow(),['المدينة',city(),1],['موقع المشروع',val('c_site')],['المالك / الاستشاري',val('c_cons')]]],
  ['2) الطلب والمشروع',[['اسم المشروع',val('p_name'),1],['نوع المشروع',ov('p_type'),1],['مهندس المبيعات',ov('r_eng'),1],['رقم اتصال العميل',call(),1]]],
  ['3) الملفات المسلّمة',ATT.map(a=>[a[1],val(a[0])==='نعم'?'✓ مرفق':''])],
  ['4) نطاق العمل',[['النطاق',ov('s_scope'),1],['الأعمال المطلوبة',itv('s_disc'),1]].concat(has('تكييف')?[['أساس تسعير التكييف',ov('b_hvac'),1],['أنواع التكييف',sysv(),1],['الماركات لكل نوع',brands(),1],['الداكت والجريلات',ov('s_duct'),1],['النحاس',copper(),1]]:[]).concat([].concat(...DISC.filter(d=>d[2]&&has(d[0])).map(d=>{const x=BSS.find(z=>z[1]===d[0]);return [['أساس تسعير '+d[0],ov(x[0]),1],['بنود '+d[0],itv(d[2]),1],['ماركات '+d[0],val(x[2])]]}))).concat(has('أخرى')?[['الأعمال الأخرى',val('s_disc_o'),1],['أساس تسعير الأعمال الأخرى',ov('b_ot'),1],['ماركات الأعمال الأخرى',val('m_ot')]]:[]) ],
@@ -292,6 +294,18 @@ $('cpx').addEventListener('click',()=>$('cpk').classList.remove('on'));
 $('cpk').addEventListener('click',e=>{if(e.target.id==='cpk')$('cpk').classList.remove('on')});
 $('clist').addEventListener('click',e=>{const b=e.target.closest('button[data-c]');if(!b)return;$('c_city').value=b.dataset.c;$('cpk').classList.remove('on');cityUI();update();if(b.dataset.c==='أخرى')setTimeout(()=>$('c_city_o').focus(),50)});
 cityUI();update();
+
+/*val265 — الجوال: 10 أرقام يبدأ بـ 05 أو 01 / الإيميل: حروف إنجليزي + @*/
+function phOk(){const v=val('c_mob');return !v||/^0[15]\d{8}$/.test(v)}
+function mlOk(){const v=val('c_mail');return !v||/^[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(\.[A-Za-z0-9\-]+)*\.[A-Za-z]{2,}$/.test(v)}
+function phRow(){return phOk()?['الجوال',val('c_mob')]:['جوال العميل صحيح (10 أرقام يبدأ بـ 05 أو 01)','',1]}
+function mlRow(){return mlOk()?['الإيميل',val('c_mail')]:['إيميل العميل صحيح (حروف إنجليزي و @)','',1]}
+function vPaint(){const m=$('c_mob'),e=$('c_mail');if(!m||!e)return;const a=!phOk(),b=!mlOk();m.classList.toggle('bad265',a);e.classList.toggle('bad265',b);$('w_mob').classList.toggle('on',a);$('w_mail').classList.toggle('on',b)}
+(function(){const m=$('c_mob'),e=$('c_mail');if(!m||!e)return;
+ const AD='٠١٢٣٤٥٦٧٨٩',PD='۰۱۲۳۴۵۶۷۸۹';
+ m.addEventListener('input',()=>{let v=m.value.replace(/[٠-٩]/g,d=>AD.indexOf(d)).replace(/[۰-۹]/g,d=>PD.indexOf(d)).replace(/\D/g,'').slice(0,10);if(v!==m.value)m.value=v;vPaint()},true);
+ e.addEventListener('input',()=>{const v=e.value.replace(/[^A-Za-z0-9@._%+\-]/g,'');if(v!==e.value){e.value=v;try{toast('الإيميل بالحروف الإنجليزي بس')}catch(x){}}vPaint()},true);
+ frm.addEventListener('change',()=>setTimeout(vPaint,0));setTimeout(vPaint,0);})();
 
 /*fold261 — مجموعة اختيارين: بعد الاختيار تتقفل / الماركات: لما توصل للحد الأقصى تتقفل — ونسبة الأرباح مقفولة حاليًا*/
 function chCond(c){if(c.closest('.yn'))return null;const sys=c.classList.contains('sys');const items=sys?[...c.querySelectorAll(':scope>.sty')]:[...c.querySelectorAll(':scope>label')];const ins=items.map(it=>it.querySelector('input')).filter(Boolean);if(ins.length<2||ins.length!==items.length)return null;let k=false;
@@ -371,7 +385,7 @@ function sheet(){
  const row=(k,v,r)=>'<tr><th>'+k+'</th><td class="'+(!v&&r?'miss':'')+'">'+(v?'<bdi>'+esc(v)+'</bdi>':(r?'ناقص':'—'))+'</td></tr>';
  const miss=req().filter(r=>!r[1]).map(r=>r[0]);
  $('sheet').innerHTML='<div class="sh-hd"><span>'+ds+'</span></div>'+
- '<div class="sh-t">نموذج طلب عرض سعر <span style="font-size:11px;font-weight:700">(معتمد R30)</span>'+(rejected()?' — مرفوض':'')+'</div>'+(rejected()?'<div class="rj-ban"><div class="t">⛔ الطلب مرفوض</div><div class="h">أسباب الرفض:</div><ol>'+reasons().map((x,i)=>'<li>'+(i+1)+') '+esc(x)+'</li>').join('')+'</ol><div class="rj-sw"><div class="rj-st"><span>مرفوض</span><img alt="" src="'+SIG+'"><small>م. شريف فتحي</small></div></div></div>':'')+
+ '<div class="sh-t">نموذج طلب عرض سعر <span style="font-size:11px;font-weight:700">(معتمد R31)</span>'+(rejected()?' — مرفوض':'')+'</div>'+(rejected()?'<div class="rj-ban"><div class="t">⛔ الطلب مرفوض</div><div class="h">أسباب الرفض:</div><ol>'+reasons().map((x,i)=>'<li>'+(i+1)+') '+esc(x)+'</li>').join('')+'</ol><div class="rj-sw"><div class="rj-st"><span>مرفوض</span><img alt="" src="'+SIG+'"><small>م. شريف فتحي</small></div></div></div>':'')+
  '<div style="position:relative">'+rows().map(([h,rs])=>'<table><caption>'+h+'</caption>'+rs.map(r=>row(r[0],r[1],r[2])).join('')+'</table>').join('')+'</div>'+
  (miss.length?'<p style="color:#c62828;margin:0 0 8px">⚠️ ناقص: '+esc(miss.join('، '))+'</p>':'')+ chk()+
  '<div class="sh-ft"><span>يُسلَّم لمساعد <b style="font-weight:800;font-size:1.15em">م. شريف فتحي</b> <span style="font-weight:600;font-size:.88em">– مساعد المدير العام للشؤون الفنية</span></span><span>'+ds+'</span></div>';
