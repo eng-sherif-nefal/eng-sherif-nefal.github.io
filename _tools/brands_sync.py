@@ -61,7 +61,8 @@ def apply(html,data):
         r=find_brx(s,t)
         if not r: continue
         cur=current(s,t)
-        lst=[(n,)+tuple(src[n]) for n in order(list(src))]
+        keep=[n for n in cur if n in src]
+        lst=[(n,)+tuple(src[n]) for n in keep+order([n for n in src if n not in cur])]
         new=build(t,s[r[0]:r[1]],lst)
         a=[n for n in src if n not in cur];d=[n for n in cur if n not in src]
         ch=[n for n in src if n in cur and (sorted(cur[n][0])!=sorted(src[n][0]) or sorted(cur[n][1])!=sorted(src[n][1]))]
