@@ -113,6 +113,7 @@ input:focus,textarea:focus{outline:3px solid #f2b705;outline-offset:1px}
 .ar-p{font-weight:800;color:var(--navy);margin-top:2px}.ar-m{font-size:.9rem;color:var(--mute);margin-top:4px}.ar-b{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}.ar-b button{min-height:54px;border-radius:12px;border:0;font:800 1rem Cairo,sans-serif;cursor:pointer;background:var(--navy);color:var(--paper)}.ar-b button+button{background:#1f8a4c;color:#fff}.ar-b button.del{background:#eef0f4;color:#b42318}.ar-b button.warnb{background:#f2b705;color:#15202e;grid-column:1/-1;order:-1}
 .ar-empty{text-align:center;padding:40px 14px;color:var(--mute);font-size:1.05rem;border:2px dashed var(--line);border-radius:14px}
 @media(max-width:560px){.ar-b{grid-template-columns:1fr 1fr}.ar-b button.del{grid-column:1/-1}}
+/*slim258*/.acts{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:4px!important;padding:5px 6px calc(5px + env(safe-area-inset-bottom))!important}.acts a,.acts button{min-height:44px!important;font-size:.72rem!important;border-radius:9px!important;padding:2px!important;line-height:1.15;flex-direction:column;gap:1px;white-space:nowrap;overflow:hidden}.acts i{font-style:normal;font-size:1.05rem;line-height:1}.acts .b5 b{min-width:1.3em;padding:0 4px;margin:0;font-size:.68rem}.wrap{padding-bottom:70px!important}.meter{padding:6px 12px!important;margin:0 0 10px!important}.meter .row{font-size:.9rem}.meter .bar{height:8px!important;margin-top:3px!important}.miss{font-size:.8rem!important;margin-top:2px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.toast{bottom:100px!important}
 </style>
 </head>
 <body>
@@ -175,12 +176,12 @@ input:focus,textarea:focus{outline:3px solid #f2b705;outline-offset:1px}
 </form>
 </div>
 <div class="acts">
-<button class="b1" id="sh" type="button">📄 عرض كورقة للسكرتير</button>
-<a class="b2" id="wa" href="#" target="_blank" rel="noopener">إرسال واتساب (نص)</a>
-<button class="b3" id="cp" type="button">نسخ البيانات</button>
-<button class="b3" id="clr" type="button">مسح الكل</button>
-<button class="b4" id="arcSave" type="button">🗄️ أرشفة الطلب</button>
-<button class="b5" id="arcOpen" type="button">📂 أرشيف طلباتي <b id="arcN">0</b></button>
+<button class="b1" id="sh" type="button"><i>📄</i>PDF</button>
+<a class="b2" id="wa" href="#" target="_blank" rel="noopener"><i>💬</i>واتساب</a>
+<button class="b3" id="cp" type="button"><i>📋</i>نسخ</button>
+<button class="b4" id="arcSave" type="button"><i>🗄️</i>أرشفة</button>
+<button class="b5" id="arcOpen" type="button"><i>📂<b id="arcN">0</b></i>أرشيفي</button>
+<button class="b3" id="clr" type="button"><i>🧹</i>مسح</button>
 </div>
 <div id="arc"><div class="in"><div class="top"><span>📂 أرشيف طلباتي <small id="arcCnt"></small><small>محفوظ على جهازك ومتصفحك ده</small></span><button type="button" id="arcX">إغلاق</button></div><div class="sr"><input id="arcQ" type="search" placeholder="🔎 دوّر باسم العميل أو المشروع"></div><div id="arcList"></div></div></div>
 <div class="sheetbg" id="sheetbg"><div class="sheet" id="sheet"></div>
@@ -253,7 +254,7 @@ function text(){const L=['نموذج طلب عرض سعر',''];if(rejected()){L.
 function update(){
  const r=req(),done=r.filter(x=>x[1]).length,pct=Math.round(done/r.length*100);
  $('mtxt').textContent='اكتمل '+done+' من '+r.length;$('mpct').textContent=pct+'%';const b=$('mbar');b.style.width=pct+'%';b.classList.toggle('full',pct===100);
- const miss=r.filter(x=>!x[1]).map(x=>x[0]);$('miss').textContent=miss.length?('⛔ لو اتبعت كده هيترفض — ناقص: '+miss.slice(0,3).join('، ')+(miss.length>3?(' و'+(miss.length-3)+' غيرهم'):'')):'كل الخانات الإلزامية مكتملة ✓';$('miss').style.color=miss.length?'':'var(--ok)';
+ const miss=r.filter(x=>!x[1]).map(x=>x[0]);$('miss').textContent=miss.length?('⛔ ناقص '+miss.length+': '+miss.join('، ')):'كل الخانات الإلزامية مكتملة ✓';$('miss').style.color=miss.length?'':'var(--ok)';
  const t=val('c_type');$('box_co').hidden=!t||t==='فرد';$('box_in').hidden=t!=='فرد';
  $('c_city_o').hidden=val('c_city')!=='أخرى';
  $('r_call').disabled=!!val('r_callno');
@@ -275,8 +276,8 @@ const BRMAX=4,BRSCOPE='type';const BRORD=[];frm.addEventListener('change',e=>{co
 $('cp').addEventListener('click',()=>{const t=text();const ok=()=>toast('اتنسخت البيانات — الصقها في الواتساب للمساعد');
  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,()=>fb(t)&&ok());else if(fb(t))ok();});
 function fb(t){try{const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();const r=document.execCommand('copy');a.remove();return r}catch(e){return false}}
-let armed=false;$('clr').addEventListener('click',e=>{if(!armed){armed=true;e.target.textContent='اضغط تاني للتأكيد';setTimeout(()=>{armed=false;e.target.textContent='مسح الكل'},3000);return}
- frm.reset();armed=false;e.target.textContent='مسح الكل';try{localStorage.removeItem(KEY)}catch(x){};$('c_city').value='';cityUI();update();toast('اتمسحت كل الخانات')});
+let armed=false;$('clr').addEventListener('click',e=>{if(!armed){armed=true;$('clr').innerHTML='<i>⚠️</i>تأكيد؟';setTimeout(()=>{armed=false;$('clr').innerHTML='<i>🧹</i>مسح'},3000);return}
+ frm.reset();armed=false;$('clr').innerHTML='<i>🧹</i>مسح';try{localStorage.removeItem(KEY)}catch(x){};$('c_city').value='';cityUI();update();toast('اتمسحت كل الخانات')});
 
 const CG=[["منطقة الرياض", "#0b5d3b", "#e2f3e9", ["الرياض", "الخرج", "الدرعية", "المجمعة", "الزلفي", "شقراء", "الدوادمي", "القويعية", "عفيف", "وادي الدواسر", "الأفلاج"]], ["منطقة مكة المكرمة", "#a11d1d", "#fde4e4", ["جدة", "مكة المكرمة", "الطائف", "رابغ", "القنفذة"]], ["منطقة المدينة المنورة", "#1d4ea3", "#e2ebfb", ["المدينة المنورة", "ينبع", "العُلا"]], ["المنطقة الشرقية", "#8a5700", "#fcefd2", ["الدمام", "الخبر", "الظهران", "الجبيل", "الأحساء", "القطيف", "حفر الباطن", "الخفجي"]], ["منطقة القصيم", "#5a2b90", "#eee5fa", ["بريدة", "عنيزة", "الرس", "البكيرية"]], ["منطقة عسير", "#0d6b70", "#dbf2f2", ["أبها", "خميس مشيط", "محايل عسير", "بيشة", "النماص"]], ["الشمال", "#6a4626", "#f2e9df", ["حائل", "الجوف (سكاكا)", "القريات", "عرعر", "تبوك"]], ["الجنوب", "#3b4252", "#e8ebf0", ["جازان", "نجران", "الباحة"]]];
 function cityUI(){const v=$('c_city').value,b=$('cbtn');$('cbtxt').textContent=v?(v==='أخرى'?'أخرى (اكتبها تحت)':v):'اختار المدينة';b.classList.toggle('has',!!v);}
