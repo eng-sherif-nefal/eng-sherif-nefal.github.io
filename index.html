@@ -114,12 +114,13 @@ input:focus,textarea:focus{outline:3px solid #f2b705;outline-offset:1px}
 .ar-empty{text-align:center;padding:40px 14px;color:var(--mute);font-size:1.05rem;border:2px dashed var(--line);border-radius:14px}
 @media(max-width:560px){.ar-b{grid-template-columns:1fr 1fr}.ar-b button.del{grid-column:1/-1}}
 /*slim258*/.acts{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:4px!important;padding:5px 6px calc(5px + env(safe-area-inset-bottom))!important}.acts a,.acts button{min-height:44px!important;font-size:.72rem!important;border-radius:9px!important;padding:2px!important;line-height:1.15;flex-direction:column;gap:1px;white-space:nowrap;overflow:hidden}.acts i{font-style:normal;font-size:1.05rem;line-height:1}.acts .b5 b{min-width:1.3em;padding:0 4px;margin:0;font-size:.68rem}.wrap{padding-bottom:70px!important}.meter{padding:6px 12px!important;margin:0 0 10px!important}.meter .row{font-size:.9rem}.meter .bar{height:8px!important;margin-top:3px!important}.miss{font-size:.8rem!important;margin-top:2px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.toast{bottom:100px!important}
+/*fold259*/.yn.fx{display:none!important}#fxTog{display:block;width:calc(100% - 32px);margin:8px 16px;min-height:42px;border:2px dashed var(--line);border-radius:10px;background:var(--soft);color:var(--navy);font:800 .9rem Cairo,sans-serif;cursor:pointer}#fxTog[hidden]{display:none!important}.fxok{margin:8px 16px 0;padding:8px 12px;border-radius:10px;background:var(--okbg);color:var(--ok);font-weight:800;font-size:.9rem}.fxok[hidden]{display:none!important}/*pin259*/.meter{position:fixed!important;top:0!important;left:50%!important;transform:translateX(-50%);width:min(820px,calc(100% - 12px));z-index:15!important;margin:0!important;border-radius:0 0 14px 14px!important;border-top:0!important;box-shadow:0 6px 14px -8px #0006!important}
 </style>
 </head>
 <body>
 <header>
 
-<h1>نموذج طلب عرض سعر — مسؤول المبيعات / المهندس <small style="font-size:.6em;opacity:.8">R25</small></h1><div style="display:inline-block;margin-top:4px;background:#e7f6ec;color:#1b7a3d;border-radius:20px;padding:2px 12px;font:800 .8rem Cairo,sans-serif">✔ النموذج المعتمد — إصدار R25 — 25/11/2026</div>
+<h1>نموذج طلب عرض سعر — مسؤول المبيعات / المهندس <small style="font-size:.6em;opacity:.8">R27</small></h1><div style="display:inline-block;margin-top:4px;background:#e7f6ec;color:#1b7a3d;border-radius:20px;padding:2px 12px;font:800 .8rem Cairo,sans-serif">✔ النموذج المعتمد — إصدار R27 — 26/11/2026</div>
 <p>يُملأ ويُسلَّم مع ملفاته لمساعد <b style="font-weight:800;font-size:1.15em">م. شريف فتحي</b> <span style="font-weight:600;font-size:.88em">– مساعد المدير العام للشؤون الفنية</span></p>
 </header>
 <div class="wrap">
@@ -290,6 +291,22 @@ $('cpk').addEventListener('click',e=>{if(e.target.id==='cpk')$('cpk').classList.
 $('clist').addEventListener('click',e=>{const b=e.target.closest('button[data-c]');if(!b)return;$('c_city').value=b.dataset.c;$('cpk').classList.remove('on');cityUI();update();if(b.dataset.c==='أخرى')setTimeout(()=>$('c_city_o').focus(),50)});
 cityUI();update();
 
+/*fold259 — بعد ما الملف الإجباري يتعلّم، باقي الملفات تختفي*/
+let FX=false;
+function fileFold(){const blk=$('fblk');if(!blk)return;let tog=$('fxTog'),okm=$('fxOk');
+ if(!tog){tog=document.createElement('button');tog.type='button';tog.id='fxTog';tog.addEventListener('click',()=>{FX=!FX;fileFold()});const last=[...blk.querySelectorAll('.yn')].pop();if(last)last.after(tog);else blk.appendChild(tog);
+  okm=document.createElement('div');okm.id='fxOk';okm.className='fxok';const h=$('f_hint');if(h)h.after(okm);else blk.prepend(okm);}
+ const ok=has('تكييف')?hvacOk():basis();let n=0;
+ blk.querySelectorAll('.yn').forEach(r=>{const i=r.querySelector('input');const h=ok&&!FX&&!(i&&i.checked);r.classList.toggle('fx',h);if(h)n++;});
+ tog.hidden=!ok||(!n&&!FX);tog.textContent=FX?'▴ إخفاء باقي الملفات':'▾ عندك ملفات تانية؟ إظهار باقي الملفات ('+n+')';
+ okm.hidden=!ok;okm.textContent='✓ الملف الإجباري متعلّم — كمّل البنود اللي تحت';
+ const fh=$('f_hint');if(fh)fh.style.display=ok?'none':'';}
+frm.addEventListener('change',()=>setTimeout(fileFold,0));frm.addEventListener('input',()=>setTimeout(fileFold,0));frm.addEventListener('click',()=>setTimeout(fileFold,0));setTimeout(fileFold,0);
+
+/*pin259 — شريط «اكتمل» ثابت فوق دايمًا*/
+function pinPad(){const m=document.querySelector('.meter');if(m)document.body.style.paddingTop=(m.offsetHeight+4)+'px'}
+addEventListener('resize',pinPad);setTimeout(pinPad,0);setTimeout(pinPad,800);if(document.fonts)document.fonts.ready.then(pinPad);
+
 /*arc257 — أرشيف طلبات المندوب على جهازه*/
 const AK='nefal-quote-req-archive';let CUR=null,ldArm='',dlArm='';
 function arcGet(){try{return JSON.parse(localStorage.getItem(AK)||'[]')}catch(e){return null}}
@@ -338,7 +355,7 @@ function sheet(){
  const row=(k,v,r)=>'<tr><th>'+k+'</th><td class="'+(!v&&r?'miss':'')+'">'+(v?'<bdi>'+esc(v)+'</bdi>':(r?'ناقص':'—'))+'</td></tr>';
  const miss=req().filter(r=>!r[1]).map(r=>r[0]);
  $('sheet').innerHTML='<div class="sh-hd"><span>'+ds+'</span></div>'+
- '<div class="sh-t">نموذج طلب عرض سعر <span style="font-size:11px;font-weight:700">(معتمد R25)</span>'+(rejected()?' — مرفوض':'')+'</div>'+(rejected()?'<div class="rj-ban"><div class="t">⛔ الطلب مرفوض</div><div class="h">أسباب الرفض:</div><ol>'+reasons().map((x,i)=>'<li>'+(i+1)+') '+esc(x)+'</li>').join('')+'</ol><div class="rj-sw"><div class="rj-st"><span>مرفوض</span><img alt="" src="'+SIG+'"><small>م. شريف فتحي</small></div></div></div>':'')+
+ '<div class="sh-t">نموذج طلب عرض سعر <span style="font-size:11px;font-weight:700">(معتمد R27)</span>'+(rejected()?' — مرفوض':'')+'</div>'+(rejected()?'<div class="rj-ban"><div class="t">⛔ الطلب مرفوض</div><div class="h">أسباب الرفض:</div><ol>'+reasons().map((x,i)=>'<li>'+(i+1)+') '+esc(x)+'</li>').join('')+'</ol><div class="rj-sw"><div class="rj-st"><span>مرفوض</span><img alt="" src="'+SIG+'"><small>م. شريف فتحي</small></div></div></div>':'')+
  '<div style="position:relative">'+rows().map(([h,rs])=>'<table><caption>'+h+'</caption>'+rs.map(r=>row(r[0],r[1],r[2])).join('')+'</table>').join('')+'</div>'+
  (miss.length?'<p style="color:#c62828;margin:0 0 8px">⚠️ ناقص: '+esc(miss.join('، '))+'</p>':'')+ chk()+
  '<div class="sh-ft"><span>يُسلَّم لمساعد <b style="font-weight:800;font-size:1.15em">م. شريف فتحي</b> <span style="font-weight:600;font-size:.88em">– مساعد المدير العام للشؤون الفنية</span></span><span>'+ds+'</span></div>';
