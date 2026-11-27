@@ -422,17 +422,18 @@ function arcFmt(s){const d=new Date(s),p=n=>String(n).padStart(2,'0');return p(d
 function arcEsc(t){return String(t==null?'':t).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function arcBtn(){const a=arcGet();$('arcN').textContent=a?a.length:'—'}
 function arcDirty(){const d=snap();if(!String(d.c_name||'').trim()&&!String(d.p_name||'').trim())return false;const a=arcGet()||[],s=JSON.stringify(d);return !a.some(e=>JSON.stringify(e.data)===s)}
-function arcSave(){const a=arcGet();if(!a){toast('الأرشيف مش متاح على المتصفح ده');return}
- const d=snap(),cl=String(d.c_name||'').trim(),pr=String(d.p_name||'').trim();if(!cl&&!pr){toast('اكتب اسم العميل أو اسم المشروع الأول');return}
+function arcSave(auto){auto=auto===true;const a=arcGet();if(!a){if(!auto)toast('الأرشيف مش متاح على المتصفح ده');return}
+ const d=snap(),cl=String(d.c_name||'').trim(),pr=String(d.p_name||'').trim();if(!cl&&!pr){if(!auto)toast('اكتب اسم العميل أو اسم المشروع الأول');return}
  const now=new Date().toISOString(),ce=CUR&&a.find(x=>x.id===CUR),id=ce&&(ce.client===cl||ce.project===pr)?CUR:('A'+Date.now().toString(36)+Math.random().toString(36).slice(2,5));
  const e={id,at:now,client:cl,project:pr,rep:ov('r_eng'),rej:rejected(),pct:$('mpct').textContent,data:d};
  const i=a.findIndex(x=>x.id===id);if(i>=0){e.first=a[i].first||a[i].at;a[i]=e}else{e.first=now;a.unshift(e)}
  if(!arcSet(a)){toast('ما اتحفظش — مساحة المتصفح مليانة، امسح طلبات قديمة من الأرشيف');return}
- CUR=id;upStore(id);arcBtn();toast(i>=0?'✓ اتحدّث الطلب في أرشيفك':'✓ اتأرشف الطلب عندك على الجهاز')}
+ CUR=id;upStore(id);arcBtn();if(!auto)toast(i>=0?'✓ اتحدّث الطلب في أرشيفك':'✓ اتأرشف الطلب عندك على الجهاز')}
+/*autoarc272*/document.addEventListener('click',ev=>{const b=ev.target&&ev.target.closest&&ev.target.closest('#sh,#wa,#cp,#pdf');if(b){try{arcSave(true)}catch(x){}}},true);
 function arcShow(){const all=arcGet();if(!all){toast('الأرشيف مش متاح على المتصفح ده');return}
  const a=all.slice().sort((x,y)=>x.at<y.at?1:-1),q=String($('arcQ').value||'').trim().toLowerCase();
  const L=a.filter(e=>!q||(e.client+' '+e.project+' '+(e.rep||'')).toLowerCase().indexOf(q)>=0);
- $('arcList').innerHTML=L.length?L.map(e=>'<div class="ar-it'+(e.id===CUR?' cur':'')+'"><div class="ar-h"><b>'+arcEsc(e.client||'بدون اسم عميل')+'</b>'+(e.rej?'<span class="ar-rj">⛔ مرفوض / ناقص</span>':'<span class="ar-ok">✓ مكتمل</span>')+'</div><div class="ar-p">'+arcEsc(e.project||'—')+'</div><div class="ar-m">'+(e.rep?'مهندس المبيعات: '+arcEsc(e.rep)+'<br>':'')+'اتأرشف: '+arcFmt(e.first||e.at)+(e.first&&e.first!==e.at?'<br>آخر تعديل: '+arcFmt(e.at):'')+'</div><div class="ar-b"><button type="button" data-ao="'+e.id+'">📂 فتح الطلب</button><button type="button" data-as="'+e.id+'">📄 الورقة</button><button type="button" class="del" data-ad="'+e.id+'">🗑️ حذف</button></div></div>').join(''):'<div class="ar-empty">'+(a.length?'مفيش طلب بالاسم ده':'لسه مفيش طلبات في أرشيفك.<br>بعد ما تخلّص الطلب اضغط «🗄️ أرشفة الطلب».')+'</div>';
+ $('arcList').innerHTML=L.length?L.map(e=>'<div class="ar-it'+(e.id===CUR?' cur':'')+'"><div class="ar-h"><b>'+arcEsc(e.client||'بدون اسم عميل')+'</b>'+(e.rej?'<span class="ar-rj">⛔ مرفوض / ناقص</span>':'<span class="ar-ok">✓ مكتمل</span>')+'</div><div class="ar-p">'+arcEsc(e.project||'—')+'</div><div class="ar-m">'+(e.rep?'مهندس المبيعات: '+arcEsc(e.rep)+'<br>':'')+'اتأرشف: '+arcFmt(e.first||e.at)+(e.first&&e.first!==e.at?'<br>آخر تعديل: '+arcFmt(e.at):'')+'</div><div class="ar-b"><button type="button" data-ao="'+e.id+'">📂 فتح الطلب</button><button type="button" data-as="'+e.id+'">📄 الورقة</button><button type="button" class="del" data-ad="'+e.id+'">🗑️ حذف</button></div></div>').join(''):'<div class="ar-empty">'+(a.length?'مفيش طلب بالاسم ده':'لسه مفيش طلبات في أرشيفك.<br>الطلب بيتأرشف لوحده أول ما تعمل الورقة أو الـPDF.')+'</div>';
  $('arcCnt').textContent=a.length+' طلب';$('arc').classList.add('on')}
 function arcOpen(id,b,asSheet){const e=(arcGet()||[]).find(x=>x.id===id);if(!e)return;
  if(id!==CUR&&arcDirty()&&ldArm!==id){ldArm=id;const t=b.textContent;b.textContent='⚠️ الطلب اللي في الفورم مش متأرشف — اضغط تاني';b.classList.add('warnb');setTimeout(()=>{if(ldArm===id){ldArm='';b.textContent=t;b.classList.remove('warnb')}},5000);return}
@@ -440,7 +441,7 @@ function arcOpen(id,b,asSheet){const e=(arcGet()||[]).find(x=>x.id===id);if(!e)r
  if(asSheet)sheet();else toast('اتفتح طلب '+(e.client||e.project)+' — أي تعديل اضغط «أرشفة الطلب» يتحدّث')}
 function arcDel(id,b){if(dlArm!==id){dlArm=id;b.textContent='اضغط تاني للتأكيد';setTimeout(()=>{if(dlArm===id){dlArm='';b.textContent='🗑️ حذف'}},4000);return}
  dlArm='';upDel(id);const a=(arcGet()||[]).filter(x=>x.id!==id);arcSet(a);if(CUR===id)CUR=null;arcBtn();arcShow();toast('اتحذف الطلب من الأرشيف')}
-$('arcSave').addEventListener('click',arcSave);$('arcOpen').addEventListener('click',()=>{$('arcQ').value='';arcShow()});
+$('arcSave').addEventListener('click',()=>arcSave());$('arcOpen').addEventListener('click',()=>{$('arcQ').value='';arcShow()});
 $('arcX').addEventListener('click',()=>$('arc').classList.remove('on'));$('arcQ').addEventListener('input',arcShow);
 $('arcList').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.ao)arcOpen(b.dataset.ao,b,false);else if(b.dataset.as)arcOpen(b.dataset.as,b,true);else if(b.dataset.ad)arcDel(b.dataset.ad,b)});
 $('clr').addEventListener('click',()=>setTimeout(()=>{if(!String(val('c_name')).trim()&&!String(val('p_name')).trim())CUR=null},50));
