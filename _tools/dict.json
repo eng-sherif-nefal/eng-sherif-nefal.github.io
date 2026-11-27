@@ -564,5 +564,7 @@
 "✓ اتبعت الطلب مباشر": "✓ Request sent directly",
 "ما اتبعتش — اتأكد إن النت شغال وجرّب تاني، أو استخدم «حفظ PDF» وابعته واتساب": "Not sent — check your internet and try again, or use «Save PDF» and send it by WhatsApp",
 "⛔ الطلب كبير على الإرسال المباشر (": "⛔ The request is too large to send directly (",
-"ميجا) — استخدم «حفظ PDF» وابعته واتساب": "MB) — use «Save PDF» and send it by WhatsApp"
+"ميجا) — استخدم «حفظ PDF» وابعته واتساب": "MB) — use «Save PDF» and send it by WhatsApp",
+"⛔ الطلب مرفوض — كمّل الناقص الأول. مفيش PDF ولا إرسال لحد ما الطلب يكمل": "⛔ Request rejected — complete the missing items first. No PDF or sending until the request is complete",
+"الطلب مرفوض — كمّل الناقص الأول": "Request rejected — complete the missing items first"
 }

@@ -126,7 +126,7 @@ input:focus,textarea:focus{outline:3px solid #f2b705;outline-offset:1px}
 <body>
 <header>
 
-<h1>نموذج طلب عرض سعر — مسؤول المبيعات / المهندس <small style="font-size:.6em;opacity:.8">R36</small></h1><div style="display:inline-block;margin-top:4px;background:#e7f6ec;color:#1b7a3d;border-radius:20px;padding:2px 12px;font:800 .8rem Cairo,sans-serif">✔ النموذج المعتمد — إصدار R36 — 27/11/2026</div><a class="lng264" href="en.html?v=R36">English</a>
+<h1>نموذج طلب عرض سعر — مسؤول المبيعات / المهندس <small style="font-size:.6em;opacity:.8">R37</small></h1><div style="display:inline-block;margin-top:4px;background:#e7f6ec;color:#1b7a3d;border-radius:20px;padding:2px 12px;font:800 .8rem Cairo,sans-serif">✔ النموذج المعتمد — إصدار R37 — 27/11/2026</div><a class="lng264" href="en.html?v=R37">English</a>
 <p>يُملأ ويُسلَّم مع ملفاته لمساعد <b style="font-weight:800;font-size:1.15em">م. شريف فتحي</b> <span style="font-weight:600;font-size:.88em">– مساعد المدير العام للشؤون الفنية</span></p>
 </header>
 <div class="wrap">
@@ -481,7 +481,7 @@ function sheet(){
  const row=(k,v,r)=>'<tr><th>'+k+'</th><td class="'+(!v&&r?'miss':'')+'">'+(v?'<bdi>'+esc(v)+'</bdi>':(r?'ناقص':'—'))+'</td></tr>';
  const miss=req().filter(r=>!r[1]).map(r=>r[0]);
  $('sheet').innerHTML='<div class="sh-hd"><span>'+ds+'</span></div>'+
- '<div class="sh-t">نموذج طلب عرض سعر <span style="font-size:11px;font-weight:700">(معتمد R36)</span>'+(rejected()?' — مرفوض':'')+'</div>'+(rejected()?'<div class="rj-ban"><div class="t">⛔ الطلب مرفوض</div><div class="h">أسباب الرفض:</div><ol>'+reasons().map((x,i)=>'<li>'+(i+1)+') '+esc(x)+'</li>').join('')+'</ol><div class="rj-sw"><div class="rj-st"><span>مرفوض</span><img alt="" src="'+SIG+'"><small>م. شريف فتحي</small></div></div></div>':'')+
+ '<div class="sh-t">نموذج طلب عرض سعر <span style="font-size:11px;font-weight:700">(معتمد R37)</span>'+(rejected()?' — مرفوض':'')+'</div>'+(rejected()?'<div class="rj-ban"><div class="t">⛔ الطلب مرفوض</div><div class="h">أسباب الرفض:</div><ol>'+reasons().map((x,i)=>'<li>'+(i+1)+') '+esc(x)+'</li>').join('')+'</ol><div class="rj-sw"><div class="rj-st"><span>مرفوض</span><img alt="" src="'+SIG+'"><small>م. شريف فتحي</small></div></div></div>':'')+
  '<div style="position:relative">'+rows().map(([h,rs])=>'<table><caption>'+h+'</caption>'+rs.map(r=>row(r[0],r[1],r[2])).join('')+'</table>').join('')+'</div>'+
  (miss.length?'<p style="color:#c62828;margin:0 0 8px">⚠️ ناقص: '+esc(miss.join('، '))+'</p>':'')+ chk()+
  '<div class="sh-ft"><span>يُسلَّم لمساعد <b style="font-weight:800;font-size:1.15em">م. شريف فتحي</b> <span style="font-weight:600;font-size:.88em">– مساعد المدير العام للشؤون الفنية</span></span><span>'+ds+'</span></div>';
@@ -586,28 +586,14 @@ const u0=update;update=function(){u0();paint();};
 frm.addEventListener('input',paint);frm.addEventListener('change',paint);paint();
 window.__acc={get open(){return OPEN},get fg(){return FG}};})();
 
-/*rej253*/
-let rjBusy=false;
-async function sendRejected(){
- if(rjBusy)return;const m=$('pdfmsg');
- const sig=JSON.stringify([text(),reasons()]);let last='';try{last=localStorage.getItem(KEY+'-rejsent')||''}catch(e){}
- if(last===sig){m.textContent='⛔ الطلب مرفوض — النسخة دي اتبعتت قبل كده لملف الطلبات المرفوضة';return}
- rjBusy=true;m.textContent='⏳ الطلب مرفوض — جاري تصديره لملف الطلبات المرفوضة…';
- try{
-  const db=await claude.use('db');if(!db)throw {code:'nodb'};
-  const pdf=await buildPdf(),blob=pdf.output('blob');
-  const nm=(val('c_name')||'بدون اسم').replace(/[\\/:*?"<>|]/g,' ').slice(0,60);
-  const d=new Date(),p=n=>String(n).padStart(2,'0');
-  const id='R'+d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'-'+p(d.getHours())+p(d.getMinutes())+p(d.getSeconds())+'-'+Math.random().toString(36).slice(2,6);
-  let asset=null;try{const as=await claude.use('assets');if(as)asset=await as.upload(new File([blob],id+'.pdf',{type:'application/pdf'}))}catch(e){}
-  await db.doc('rejected/'+id).set({id,at:d.toISOString(),client:val('c_name'),project:val('p_name'),rep:ov('r_eng'),reasons:reasons(),missing:req().filter(r=>!r[1]).map(r=>r[0]),fileName:'مرفوض - نموذج طلب عرض سعر - '+nm+' - '+id+'.pdf',assetId:asset?asset.id:'',sizeBytes:asset?asset.sizeBytes:0,text:text(),status:'new'});
-  try{localStorage.setItem(KEY+'-rejsent',sig)}catch(e){}
-  m.textContent='⛔ الطلب مرفوض — واتصدّر لملف الطلبات المرفوضة عند م. شريف فتحي ('+id+')';toast('الطلب مرفوض واتصدّر لملف الطلبات المرفوضة');
- }catch(e){m.textContent='⛔ الطلب مرفوض — اضغط «حفظ PDF» تحت علشان تحفظ النسخة المرفوضة';}
- rjBusy=false;
-}
-function block(e){if(!rejected())return;e.preventDefault();e.stopImmediatePropagation();update();sheet();sendRejected();}
-['sh','wa','cp'].forEach(id=>{const b=$(id);if(b)b.addEventListener('click',block,true)});
+/*rej278 — الطلب المرفوض (ناقص) ما يطلعش PDF ولا واتساب ولا «إرسال مباشر» ولا بيتبعت لحد؛ بيظهر للمندوب على الشاشة بأسباب الرفض بس علشان يكمّل الناقص (يلغي تصدير المرفوض 253)*/
+const RJM='⛔ الطلب مرفوض — كمّل الناقص الأول. مفيش PDF ولا إرسال لحد ما الطلب يكمل';
+function rjShow(){$('pdfmsg').textContent=RJM;['pdf','direct'].forEach(i=>{const x=$(i);if(x)x.hidden=true});}
+function rjOk(){['pdf','direct'].forEach(i=>{const x=$(i);if(x)x.hidden=false});}
+function block(e){if(!rejected()){rjOk();return}e.preventDefault();e.stopImmediatePropagation();update();sheet();rjShow();toast('الطلب مرفوض — كمّل الناقص الأول');}
+function block2(e){if(!rejected())return;e.preventDefault();e.stopImmediatePropagation();rjShow();toast('الطلب مرفوض — كمّل الناقص الأول');}
+['sh','wa','cp','direct2'].forEach(id=>{const b=$(id);if(b)b.addEventListener('click',block,true)});
+['pdf','direct'].forEach(id=>{const b=$(id);if(b)b.addEventListener('click',block2,true)});
 $('rejx').addEventListener('click',()=>$('rej').classList.remove('on'));
 $('rejgo').addEventListener('click',()=>{$('rej').classList.remove('on');$('w_basis').classList.add('on');$('w_basis').scrollIntoView({behavior:'smooth',block:'center'})});
 }
