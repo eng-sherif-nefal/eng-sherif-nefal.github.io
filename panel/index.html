@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>أوامر لوحات المتابعة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light dark;--bg:light-dark(#eef1f6,#0d1626);--card:light-dark(#fff,#16233a);--ink:light-dark(#0f1c33,#eef2f8);--mute:light-dark(#4b5a73,#a9b6cc);--navy:#13294b;--gold:#c9a227;--line:light-dark(#d6dce6,#2a3a57);--ok:#15803d;--no:#dc2626}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 Cairo,Tahoma,sans-serif}
+button,input,select{font:inherit}
+.top{background:var(--navy);color:#fff;padding:18px max(4vw,16px);border-bottom:6px solid var(--gold)}
+.top h1{margin:0;font-size:clamp(24px,4.5vw,34px)}
+.wrap{max-width:1000px;margin:0 auto;padding:16px max(4vw,14px) 120px}
+.card{background:var(--card);border:2px solid var(--navy);border-radius:16px;margin:16px 0;overflow:hidden}
+.card>h2{margin:0;padding:12px 16px;background:var(--navy);color:#fff;font-size:22px}
+.sec{padding:10px 16px;border-top:1px solid var(--line)}
+.sec h3{margin:6px 0 10px;font-size:19px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.row:last-child{border-bottom:0}
+.row>span{font-weight:600}
+.sw{display:flex;gap:6px;flex:none}
+.sw button{min-height:46px;min-width:86px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font-weight:800;cursor:pointer;padding:4px 10px}
+.sw button.on{background:var(--ok);border-color:var(--ok);color:#fff}
+.sw button.off{background:var(--no);border-color:var(--no);color:#fff}
+.sw button.inh{background:var(--navy);border-color:var(--navy);color:#fff}
+.pw{min-height:46px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);padding:4px 12px;width:180px;font-size:20px;letter-spacing:1px}
+.link{font-size:15px;direction:ltr;word-break:break-all;color:var(--mute)}
+.cp{min-height:40px;border-radius:10px;border:2px solid var(--navy);background:transparent;color:var(--ink);font-weight:700;cursor:pointer;padding:2px 12px}
+details.rep{border:2px solid var(--line);border-radius:14px;margin:10px 0;background:var(--bg)}
+details.rep[open]{border-color:var(--gold)}
+details.rep>summary{cursor:pointer;padding:12px 14px;font-weight:800;font-size:19px;list-style:none;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+details.rep>summary small{font-weight:600;color:var(--mute);font-size:15px}
+details.rep .in{padding:0 14px 10px}
+.bar{position:fixed;inset-inline:0;bottom:0;background:var(--card);border-top:3px solid var(--gold);padding:10px max(4vw,14px);display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.save{min-height:56px;padding:6px 28px;border:0;border-radius:14px;background:var(--ok);color:#fff;font-size:21px;font-weight:800;cursor:pointer}
+.save:disabled{opacity:.5}
+#msg{font-weight:700}
+#lock{min-height:100vh;display:grid;place-items:center;background:var(--navy);padding:20px}
+.box{width:min(460px,100%);background:var(--card);border-radius:20px;padding:26px;border-top:8px solid var(--gold);text-align:center}
+.box input{width:100%;min-height:58px;font-size:22px;text-align:center;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink);margin:6px 0}
+.box button{width:100%;min-height:58px;border:0;border-radius:14px;background:var(--navy);color:#fff;font-size:21px;font-weight:800;margin-top:8px;cursor:pointer}
+.err{color:var(--no);min-height:26px;font-weight:700}
+.note{color:var(--mute);font-size:15px}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+</style>
+</head>
+<body>
+<section id="lock"><form class="box" id="lf">
+  <h2 style="margin:0 0 4px">أوامر لوحات المتابعة</h2>
+  <p class="note" style="margin:0 0 10px">لوحة المدير العام ولوحات مسؤولي المبيعات</p>
+  <label for="opw">الرقم السري بتاعك</label>
+  <input id="opw" type="password" inputmode="numeric" autocomplete="off">
+  <div id="tokbox" hidden><label for="tok">مفتاح GitHub (بيتحفظ على الجهاز ده بس)</label><input id="tok" type="password" autocomplete="off" style="font-size:16px"></div>
+  <button type="submit">دخول</button>
+  <div class="err" id="err"></div>
+</form></section>
+<div id="app" hidden>
+  <header class="top"><h1>أوامر لوحات المتابعة</h1><div class="note" style="color:#d7e0f0" id="upd"></div></header>
+  <main class="wrap" id="main"></main>
+  <div class="bar"><span id="msg">أي تغيير بيتطبق لما تدوس «حفظ وتطبيق».</span><button class="save" id="save" type="button">💾 حفظ وتطبيق</button></div>
+</div>
+<script>
+(function(root){
+const C=globalThis.crypto.subtle;
+const b64e=u=>{let s='';const a=new Uint8Array(u);for(let i=0;i<a.length;i+=32768)s+=String.fromCharCode.apply(null,a.subarray(i,i+32768));return btoa(s)};
+const b64d=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function pwKey(pw,salt){const k=await C.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);return C.deriveKey({name:'PBKDF2',salt,iterations:200000,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
+async function encJSON(obj,pw){const salt=globalThis.crypto.getRandomValues(new Uint8Array(16)),iv=globalThis.crypto.getRandomValues(new Uint8Array(12));const k=await pwKey(pw,salt);const ct=await C.encrypt({name:'AES-GCM',iv},k,new TextEncoder().encode(JSON.stringify(obj)));return {v:2,salt:b64e(salt),iv:b64e(iv),ct:b64e(ct)};}
+async function decJSON(E,pw){const k=await pwKey(pw,b64d(E.salt));const pt=await C.decrypt({name:'AES-GCM',iv:b64d(E.iv)},k,b64d(E.ct));return JSON.parse(new TextDecoder().decode(pt));}
+async function decFile(buf,keyB64){const k=await C.importKey('raw',b64d(keyB64),'AES-GCM',false,['decrypt']);const u=new Uint8Array(buf);return C.decrypt({name:'AES-GCM',iv:u.slice(0,12)},k,u.slice(12));}
+const normPw=v=>String(v).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[\s\-_ـ.]/g,'').toLowerCase().replace(/نيفال|نفال/g,'nefal');
+const api={encJSON,decJSON,decFile,normPw,b64e,b64d};
+if(typeof module!=='undefined')module.exports=api;else root.NC=api;
+})(this);
+
+/* فلترة بيانات لوحات المتابعة حسب بطاقة الأوامر — تشتغل في المتصفح وفي node */
+(function(root){
+const KEYS=[
+ ['tab_quotes','تبويب عروض الأسعار الصادرة'],
+ ['tab_pending','الطلبات الواردة قيد المراجعة'],
+ ['tab_contracts','تبويب العقود'],
+ ['tab_running','تبويب العقود الجارية'],
+ ['fin','التكلفة المباشرة والربح ونسبته'],
+ ['alerts','تنبيهات الربح'],
+ ['penalties','الغرامات والشروط الجزائية'],
+ ['review','ملاحظات المراجعة وما تم في العقد'],
+ ['pays','الدفعات والتحصيل (الساعات والجدول)'],
+ ['phones','أرقام جوالات العملاء'],
+ ['f_quote','ملفات عروض الأسعار'],
+ ['f_contract','ملفات العقود'],
+ ['f_analysis','ملفات تحليل السعر']
+];
+const DEF_GM=Object.fromEntries(KEYS.map(k=>[k[0],true]));
+const DEF_REPS=Object.assign({},DEF_GM,{fin:false,alerts:false,review:false,f_analysis:false});
+const norm=s=>String(s||'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه');
+function fileKind(f){const t=(f.g||'')+' '+(f.l||'');if(/تحليل/.test(t))return 'f_analysis';if(/العقد|التعميد|معمّد|عقد /.test(f.g||'')||/^العقد/.test(f.l||''))return 'f_contract';return 'f_quote';}
+function effective(cfg,who){ // who: 'gm' or rep slug
+  if(who==='gm')return Object.assign({},DEF_GM,cfg.gm.show||{});
+  const g=Object.assign({},DEF_REPS,cfg.reps.general||{}),ov=(cfg.reps.list[who]||{}).ov||{};
+  for(const k in ov){if(ov[k]===true||ov[k]===false)g[k]=ov[k];}
+  return g;
+}
+function mine(x,rep){const s=norm(x.sales||x.rep||'');return rep.match.some(m=>s.includes(norm(m)));}
+function filterData(M,who){
+  const cfg=M.cfg,S=effective(cfg,who),rep=who==='gm'?null:cfg.reps.list[who];
+  const pick=a=>(a||[]).filter(x=>!rep||mine(x,rep)).map(x=>JSON.parse(JSON.stringify(x)));
+  const fixFiles=x=>{x.files=(x.files||[]).filter(f=>S[fileKind(f)]!==false).map(f=>{const n=f.u&&f.u.startsWith('f:')?f.u.slice(2):null;return n?Object.assign({},f,{k:M.fileKeys[n]}):f;});return x;};
+  const out={updated:M.updated,viewer:who==='gm'?{title:'لوحة متابعة نفال للتكييف',pill:'نسخة سعادة المدير العام حفظه الله'}:{title:'لوحة متابعة — '+rep.name,pill:'نسخة مسؤول المبيعات'},show:S};
+  let q=pick(M.quotes).filter(x=>x.pending?S.tab_pending:S.tab_quotes);
+  q.forEach(x=>{fixFiles(x);if(!S.fin){delete x.fin;delete x.profitPct;(x.refs||[]).forEach(r=>{delete r.note});}if(!S.review){delete x.done;}});
+  if(S.tab_quotes||S.tab_pending)out.quotes=q;
+  if(S.tab_contracts){out.contracts=pick(M.contracts).map(x=>{fixFiles(x);if(!S.fin)delete x.profitPct;if(!S.alerts)x.profitAlerts=[];if(!S.penalties)x.penalties=[];if(!S.review){x.issues=[];x.mismatches=[];x.legal=[];x.done=[];x.note='';}return x;});}
+  if(S.tab_running){out.running=pick(M.running).map(x=>{fixFiles(x);if(!S.pays){x.pays=[];x.hidePays=true;}if(!S.penalties)x.penalty='';if(!S.phones){x.clientMob='';}return x;});}
+  if(!S.phones&&out.quotes)out.quotes.forEach(x=>{});
+  return out;
+}
+const api={KEYS,DEF_GM,DEF_REPS,effective,filterData,fileKind};
+if(typeof module!=='undefined')module.exports=api;else root.NF=api;
+})(this);
+
+{
+const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const REPO='eng-sherif-nefal/eng-sherif-nefal.github.io',SITE='https://eng-sherif-nefal.github.io/';
+let M=null,OWN='',TOK='';
+try{TOK=localStorage.getItem('nefal-orders-token')||''}catch(_){}
+if(!TOK)$('tokbox').hidden=false;
+$('lf').addEventListener('submit',async e=>{e.preventDefault();$('err').textContent='جاري الفتح…';
+  try{if(!TOK){TOK=$('tok').value.trim();if(!TOK){$('err').textContent='اكتب مفتاح GitHub';return}try{localStorage.setItem('nefal-orders-token',TOK)}catch(_){}}
+    OWN=NC.normPw($('opw').value);const E=await (await fetch('master.json?t='+Date.now(),{cache:'no-store'})).json();M=await NC.decJSON(E,OWN);
+    $('lock').hidden=true;$('app').hidden=false;draw();}catch(_){$('err').textContent='الرقم السري غير صحيح'}});
+const sw2=(on,cb)=>`<div class="sw"><button type="button" class="${on?'on':''}" data-a="${cb}" data-v="1">✓ ظاهر</button><button type="button" class="${on?'':'off'}" data-a="${cb}" data-v="0">✕ مخفي</button></div>`;
+const sw3=(v,cb,g)=>`<div class="sw"><button type="button" class="${v===undefined||v===null?'inh':''}" data-a="${cb}" data-v="i">زي العام (${g?'ظاهر':'مخفي'})</button><button type="button" class="${v===true?'on':''}" data-a="${cb}" data-v="1">✓ ظاهر</button><button type="button" class="${v===false?'off':''}" data-a="${cb}" data-v="0">✕ مخفي</button></div>`;
+const onoff=(on,cb)=>`<div class="sw"><button type="button" class="${on?'on':''}" data-a="${cb}" data-v="1">✓ شغّالة</button><button type="button" class="${on?'':'off'}" data-a="${cb}" data-v="0">✕ موقوفة</button></div>`;
+function cnt(slug){const d=NF.filterData(M,slug);return `${(d.quotes||[]).length} عرض · ${(d.contracts||[]).length} عقد · ${(d.running||[]).length} جاري`}
+function draw(){const c=M.cfg,G=Object.assign({},NF.DEF_GM,c.gm.show),RG=Object.assign({},NF.DEF_REPS,c.reps.general);
+  $('upd').textContent='آخر تحديث للبيانات: '+new Date(M.updated).toLocaleString('ar-EG',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Riyadh'});
+  let h=`<section class="card"><h2>👔 أوامر لوحة المدير العام</h2>
+  <div class="sec"><div class="row"><span>اللوحة</span>${onoff(c.gm.on!==false,'gm.on')}</div>
+  <div class="row"><span>الرقم السري</span><input class="pw" data-pw="gm" value="${esc(c.gm.pw)}"></div>
+  <div class="row"><span class="link">${SITE}gm/</span><button class="cp" type="button" data-cp="${SITE}gm/">نسخ الرابط</button></div>
+  <div class="row"><span>المحتوى</span><small class="note">${cnt('gm')}</small></div></div>
+  <div class="sec"><h3>إيه اللي يظهر عند المدير العام</h3>${NF.KEYS.map(([k,l])=>`<div class="row"><span>${l}</span>${sw2(G[k]!==false,'gm.show.'+k)}</div>`).join('')}</div></section>`;
+  h+=`<section class="card"><h2>👥 أوامر لوحات مسؤولي المبيعات</h2>
+  <div class="sec"><h3>الإعدادات العامة — لكل مسؤولي المبيعات</h3>${NF.KEYS.map(([k,l])=>`<div class="row"><span>${l}</span>${sw2(RG[k]!==false,'reps.general.'+k)}</div>`).join('')}
+  <p class="note">كل مسؤول مبيعات بيشوف عروضه وعقوده هو بس. تقدر تغيّر لواحد بعينه من تحت.</p></div>
+  <div class="sec"><h3>كل مسؤول مبيعات لوحده</h3>${Object.entries(c.reps.list).map(([s,r])=>`<details class="rep"><summary><span>👤 ${esc(r.name)}</span><small>${r.on===false?'⛔ موقوفة · ':''}${cnt(s)}</small></summary><div class="in">
+   <div class="row"><span>اللوحة</span>${onoff(r.on!==false,'rep.'+s+'.on')}</div>
+   <div class="row"><span>الرقم السري</span><input class="pw" data-pw="${s}" value="${esc(r.pw)}"></div>
+   <div class="row"><span class="link">${SITE}reps/${s}/</span><button class="cp" type="button" data-cp="${SITE}reps/${s}/">نسخ الرابط</button></div>
+   ${NF.KEYS.map(([k,l])=>`<div class="row"><span>${l}</span>${sw3((r.ov||{})[k],'rep.'+s+'.ov.'+k,RG[k]!==false)}</div>`).join('')}</div></details>`).join('')}</div></section>`;
+  const open=[...document.querySelectorAll('details.rep[open]')].map(d=>d.querySelector('summary').textContent);
+  $('main').innerHTML=h;document.querySelectorAll('details.rep').forEach(d=>{if(open.includes(d.querySelector('summary').textContent))d.open=true});
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&M){const a=b.dataset.a.split('.'),v=b.dataset.v,c=M.cfg;
+  if(a[0]==='gm'){if(a[1]==='on')c.gm.on=v==='1';else c.gm.show[a[2]]=v==='1';}
+  else if(a[0]==='reps'){c.reps.general[a[2]]=v==='1';}
+  else if(a[0]==='rep'){const r=c.reps.list[a[1]];if(a[2]==='on')r.on=v==='1';else{r.ov=r.ov||{};if(v==='i')delete r.ov[a[3]];else r.ov[a[3]]=v==='1';}}
+  $('msg').textContent='فيه تغييرات لسه ما اتحفظتش';draw();return}
+  const cp=e.target.closest('[data-cp]');if(cp){navigator.clipboard.writeText(cp.dataset.cp).then(()=>{cp.textContent='اتنسخ ✓'},()=>{})}});
+document.addEventListener('input',e=>{const i=e.target.closest('[data-pw]');if(!i)return;const s=i.dataset.pw;if(s==='gm')M.cfg.gm.pw=i.value.trim();else M.cfg.reps.list[s].pw=i.value.trim();$('msg').textContent='فيه تغييرات لسه ما اتحفظتش'});
+async function put(path,obj){const url=`https://api.github.com/repos/${REPO}/contents/${path}`,H={Authorization:'Bearer '+TOK,Accept:'application/vnd.github+json'};
+  let sha;const g=await fetch(url+'?ref=main&t='+Date.now(),{headers:H,cache:'no-store'});if(g.ok)sha=(await g.json()).sha;else if(g.status!==404)throw new Error('GET '+g.status);
+  const p=await fetch(url,{method:'PUT',headers:H,body:JSON.stringify({message:'أوامر لوحات المتابعة — '+path,content:btoa(JSON.stringify(obj)),sha,branch:'main'})});if(!p.ok)throw new Error('PUT '+p.status);}
+$('save').addEventListener('click',async()=>{const c=M.cfg;
+  const bad=[c.gm.pw,...Object.values(c.reps.list).map(r=>r.pw)].map(NC.normPw).filter(p=>p.length<4);if(bad.length){$('msg').textContent='فيه رقم سري أقل من 4 حروف/أرقام';return}
+  const all=[NC.normPw(c.gm.pw),...Object.values(c.reps.list).map(r=>NC.normPw(r.pw))];if(new Set(all).size!==all.length){$('msg').textContent='فيه رقمين سريين زي بعض — لازم كل لوحة برقم مختلف';return}
+  $('save').disabled=true;try{$('msg').textContent='جاري الحفظ… (لوحة المدير)';
+    await put('gm/data.json',c.gm.on===false?{off:1}:await NC.encJSON(NF.filterData(M,'gm'),NC.normPw(c.gm.pw)));
+    for(const [s,r] of Object.entries(c.reps.list)){$('msg').textContent='جاري الحفظ… ('+r.name+')';await put(`reps/${s}/data.json`,r.on===false?{off:1}:await NC.encJSON(NF.filterData(M,s),NC.normPw(r.pw)));}
+    $('msg').textContent='جاري الحفظ… (الأوامر)';await put('panel/master.json',await NC.encJSON(M,OWN));
+    $('msg').textContent='✓ اتحفظ — اللوحات هتتحدّث خلال دقيقة';}
+  catch(err){$('msg').textContent='⚠️ الحفظ ما كملش ('+err.message+') — لو المفتاح انتهى ادخل تاني بمفتاح جديد';}
+  $('save').disabled=false;});
+}
+</script>
+</body>
+</html>
