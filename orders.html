@@ -94,7 +94,7 @@ function fieldHTML(f,doc){const k=fkey(f);if(!k)return '';const title=txt(f.quer
   if(cur!==n){if(cur!==null)ops+='</div>';const st=n!==k?subTitle(i,f):'';ops+=(st?'<div class="sub">'+esc(st)+'</div>':'')+'<div class="ops">';cur=n}
   ops+=pill(key,optLabel(i).replace(/^data$/,'هدخل بيانات المبنى'))});
  if(cur!==null)ops+='</div>';
- if(k==='t_pr'){ops='<div class="sub">تحديد نسبة الأرباح للمندوب (أخضر = مفتوح للمندوب، أحمر = مقفول)</div><div class="ops">'+pill('t_pr=نعم','📈 تحديد نسبة الأرباح')+'</div>'}
+ if(k==='t_pr'){LABEL[k]='خانة نسبة الأرباح';ops='<div class="sub">الزرار اللي فوق = الخانة تظهر في النموذج ولا لأ. الزرار ده = المندوب يقدر يحدد النسبة ولا لأ:</div><div class="ops">'+pill('t_pr=نعم','نسبة الأرباح للمندوب')+'</div>'}
  return '<div class="fld" data-f="'+esc(k)+'" data-txt="'+esc(title)+'"><div class="fh"><span class="ft">'+esc(title)+'</span><button type="button" class="sw" data-k="'+esc(k)+'"></button></div>'+ops+'</div>'}
 async function build(){const r=await fetch('index.html?t='+Date.now(),{cache:'no-store'});const h=await r.text();const doc=new DOMParser().parseFromString(h,'text/html');const frm=doc.getElementById('frm');let out='';
  const secs=[...frm.children].filter(x=>x.matches('section'));
@@ -105,8 +105,8 @@ async function build(){const r=await fetch('index.html?t='+Date.now(),{cache:'no
   fb.querySelectorAll('.f').forEach(f=>{body+=fieldHTML(f,doc)});out+='<div class="card"><h2>📎 الملفات اللي بتتسلّم مع الطلب</h2>'+body+'</div>'}
  $('tree').innerHTML=out;paint()}
 function paint(){document.querySelectorAll('[data-k]').forEach(b=>{const k=b.dataset.k,o=OFF.has(k),c=o!==BASE.has(k);
-  if(b.classList.contains('sw')){b.className='sw '+(o?'off':'on')+(c?' chg':'');b.textContent=o?'✕ مقفول':'✓ شغّال';const f=b.closest('.fld');if(f)f.classList.toggle('isoff',o)}
-  else{b.classList.toggle('off',o);b.classList.toggle('chg',c)}});
+  if(b.classList.contains('sw')){b.className='sw '+(o?'off':'on')+(c?' chg':'');b.textContent=k==='t_pr'?(o?'✕ مخفية':'✓ ظاهرة'):(o?'✕ مقفول':'✓ شغّال');const f=b.closest('.fld');if(f)f.classList.toggle('isoff',o)}
+  else{b.classList.toggle('off',o);b.classList.toggle('chg',c);if(k==='t_pr=نعم'){b.textContent=o?'🔒 مقفولة — المندوب ما يقدرش يحدد النسبة':'🔓 مفتوحة — المندوب يقدر يحدد النسبة';b.style.textDecoration='none'}}});
  const n=[...new Set([...OFF,...BASE])].filter(k=>OFF.has(k)!==BASE.has(k)).length;$('save').textContent=n?'💾 حفظ وتطبيق ('+n+' تغيير)':'💾 حفظ وتطبيق على النموذج';
  $('sum').innerHTML='<span>🔴 المقفول دلوقتي: '+[...BASE].length+'</span><span>🟡 تغييرات لسه ما اتحفظتش: '+n+'</span>'+(SAVED.updated?'<span>آخر حفظ: '+esc(new Date(SAVED.updated).toLocaleString('ar-EG'))+'</span>':'')}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(!b)return;const k=b.dataset.k;if(OFF.has(k))OFF.delete(k);else OFF.add(k);paint()});
