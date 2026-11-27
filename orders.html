@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>أوامر نموذج طلب عرض سعر — نفال</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f2f57;--ok:#1b7a3d;--okbg:#e3f5e9;--no:#b42318;--nobg:#fde8e8;--line:#d6dde8;--soft:#f4f7fb;--gold:#f2b705}
+*{box-sizing:border-box}
+body{margin:0;background:#eef2f7;font:700 19px/1.6 Cairo,sans-serif;color:#15202e;padding-bottom:120px}
+header{background:var(--navy);color:#fff;padding:18px 16px 14px;text-align:center}
+header h1{margin:0;font-size:1.55rem;font-weight:800}
+header p{margin:6px 0 0;font-size:.95rem;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:12px}
+.card{background:#fff;border:2px solid var(--line);border-radius:16px;margin:0 0 14px;overflow:hidden}
+.card>h2{margin:0;background:var(--navy);color:#fff;font-size:1.25rem;padding:12px 16px}
+.grpT{background:#e8eef8;color:var(--navy);font-weight:800;padding:8px 16px;border-top:2px solid var(--line)}
+.fld{border-top:1px solid var(--line);padding:12px 14px}
+.fh{display:flex;align-items:center;gap:10px}
+.fh .ft{flex:1;font-weight:800;font-size:1.08rem}
+.sw{min-width:132px;min-height:58px;border:0;border-radius:14px;font:800 1.05rem Cairo,sans-serif;cursor:pointer;color:#fff}
+.sw.on{background:var(--ok)}.sw.off{background:var(--no)}
+.fld.isoff .ops{opacity:.35;pointer-events:none}
+.sub{margin:10px 0 4px;color:#4a5568;font-size:.92rem;font-weight:800}
+.ops{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.op{min-height:52px;padding:6px 14px;border-radius:12px;border:2px solid var(--ok);background:var(--okbg);color:var(--ok);font:800 1rem Cairo,sans-serif;cursor:pointer}
+.op.off{border-color:var(--no);background:var(--nobg);color:var(--no);text-decoration:line-through}
+.op.chg,.sw.chg{box-shadow:0 0 0 4px var(--gold)}
+.sys{width:100%;border:2px solid var(--line);border-radius:12px;padding:8px;background:var(--soft)}
+.sys .ops{margin-top:6px}
+.brT{font-size:.88rem;color:#4a5568;margin-top:6px}
+.tok{padding:14px 16px}
+.tok input{width:100%;min-height:56px;font:700 1rem monospace;padding:8px 12px;border:2px solid var(--line);border-radius:12px;direction:ltr}
+.btn{min-height:58px;padding:0 18px;border:0;border-radius:14px;font:800 1.05rem Cairo,sans-serif;cursor:pointer}
+.b-navy{background:var(--navy);color:#fff}.b-gold{background:var(--gold);color:#15202e}.b-grey{background:#e5e7eb;color:#15202e}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.st{padding:10px 16px;font-size:.98rem}
+.st.good{color:var(--ok)}.st.bad{color:var(--no)}
+details summary{cursor:pointer;color:var(--navy);font-weight:800;padding:6px 0}
+ol.help{margin:6px 0 0;padding-inline-start:22px;font-size:.95rem;font-weight:600}
+#bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:3px solid var(--navy);padding:10px;display:flex;gap:10px;justify-content:center;z-index:9}
+#bar .btn{flex:1;max-width:420px}
+#msg{text-align:center;font-weight:800;min-height:1.6em}
+#q{width:100%;min-height:56px;font:700 1.05rem Cairo,sans-serif;padding:8px 14px;border:2px solid var(--line);border-radius:14px}
+.sum{display:flex;gap:10px;flex-wrap:wrap;padding:12px 16px}
+.sum span{background:var(--soft);border:2px solid var(--line);border-radius:12px;padding:6px 12px}
+</style>
+</head>
+<body>
+<header><h1>⚙️ أوامر نموذج طلب عرض سعر</h1><p>أي حاجة تقفلها هنا (أحمر) تختفي من النموذج عند كل المندوبين — والأخضر شغّال</p></header>
+<div class="wrap">
+ <div class="card" id="tokCard"><h2>🔑 مفتاح الحفظ</h2><div class="tok" id="tokBox"></div></div>
+ <div class="card"><div class="sum" id="sum"></div><div style="padding:0 16px 14px"><input id="q" type="search" placeholder="🔎 ابحث عن خانة أو اختيار (مثال: كهرباء، Zamil، الدفعات)"></div></div>
+ <div id="tree"><div class="card"><div class="st">⏳ جاري تحميل خانات النموذج…</div></div></div>
+</div>
+<div id="bar"><button class="btn b-gold" id="save" type="button">💾 حفظ وتطبيق على النموذج</button><button class="btn b-grey" id="undo" type="button">↩️ تراجع</button></div>
+<div id="msgW" style="position:fixed;left:0;right:0;bottom:82px;z-index:9;pointer-events:none"><div id="msg"></div></div>
+<script>
+(function(){
+const OWN='eng-sherif-nefal',REPO='eng-sherif-nefal.github.io',API='https://api.github.com/repos/'+OWN+'/'+REPO+'/contents/config.json';
+const DEF=['t_pr=نعم'];const TK='nefal-orders-token';
+const $=id=>document.getElementById(id);
+let TOKEN='';try{TOKEN=localStorage.getItem(TK)||''}catch(e){}
+let SAVED={off:[],on:[]},SHA=null,OFF=new Set(),BASE=new Set(),LABEL={};
+const esc=t=>String(t==null?'':t).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+function msg(t,ok){const m=$('msg');m.textContent=t;m.style.color=ok===false?'var(--no)':'var(--ok)';m.style.background='#fff';clearTimeout(msg.t);msg.t=setTimeout(()=>{m.textContent='';m.style.background=''},6000)}
+function effOff(c){const s=new Set(c.off||[]);DEF.forEach(k=>{if((c.on||[]).indexOf(k)<0)s.add(k)});return s}
+function tokUI(){const b=$('tokBox');
+ if(TOKEN){b.innerHTML='<div class="st good">✓ المفتاح متسجّل على الجهاز ده — تقدر تقفل وتفتح وتحفظ.</div><div class="row"><button class="btn b-grey" id="tkx" type="button">🗑️ امسح المفتاح من الجهاز ده</button></div>';$('tkx').onclick=()=>{if(!confirm0($('tkx')))return;try{localStorage.removeItem(TK)}catch(e){}TOKEN='';tokUI()};$('tokCard').style.borderColor='var(--ok)'}
+ else{b.innerHTML='<div class="st bad">🔒 من غير المفتاح تقدر تشوف بس — الحفظ محتاج مفتاح GitHub بتاعك (بتدخله مرة واحدة على كل جهاز).</div><input id="tki" type="password" autocomplete="off" placeholder="github_pat_…"><div class="row"><button class="btn b-navy" id="tks" type="button">✓ تسجيل المفتاح</button></div>'+
+  '<details><summary>إزاي أعمل المفتاح؟ (مرة واحدة)</summary><ol class="help"><li>افتح github.com وادخل بحسابك eng-sherif-nefal.</li><li>الصورة بتاعتك فوق ← Settings ← Developer settings ← Personal access tokens ← Fine-grained tokens ← Generate new token.</li><li>الاسم: أوامر النموذج — المدة: اختار أطول مدة أو No expiration.</li><li>Repository access ← Only select repositories ← eng-sherif-nefal.github.io.</li><li>Permissions ← Repository permissions ← Contents ← Read and write.</li><li>Generate token، انسخه، والصقه في الخانة اللي فوق واضغط «تسجيل المفتاح».</li></ol></details>';
+  $('tks').onclick=async()=>{const v=$('tki').value.trim();if(!v){msg('الصق المفتاح الأول',false);return}TOKEN=v;const ok=await loadCfg(true);if(ok){try{localStorage.setItem(TK,v)}catch(e){}msg('✓ المفتاح شغّال واتسجّل');tokUI()}else{TOKEN='';msg('المفتاح ده مش شغّال — اتأكد إنه على المستودع eng-sherif-nefal.github.io وصلاحية Contents: Read and write',false)}};$('tokCard').style.borderColor='var(--no)'}}
+let armT=null;function confirm0(b){if(b.dataset.arm){delete b.dataset.arm;return true}b.dataset.arm='1';const t=b.textContent;b.textContent='اضغط تاني للتأكيد';clearTimeout(armT);armT=setTimeout(()=>{delete b.dataset.arm;b.textContent=t},3500);return false}
+function b64d(s){return decodeURIComponent(escape(atob(s.replace(/\n/g,''))))}
+function b64e(s){return btoa(unescape(encodeURIComponent(s)))}
+async function loadCfg(strict){
+ if(TOKEN){try{const r=await fetch(API+'?ref=main&t='+Date.now(),{headers:{Authorization:'Bearer '+TOKEN,Accept:'application/vnd.github+json'},cache:'no-store'});
+   if(r.status===404){SHA=null;SAVED={off:[],on:[]};return true}
+   if(!r.ok){if(strict)return false;throw 0}const j=await r.json();SHA=j.sha;SAVED=JSON.parse(b64d(j.content));return true}catch(e){if(strict)return false}}
+ try{const r=await fetch('config.json?t='+Date.now(),{cache:'no-store'});if(r.ok)SAVED=await r.json()}catch(e){}return true}
+function fkey(f){const g=f.querySelector('[data-group]');if(g)return g.dataset.group;const i=f.querySelector('input[name],select[name],textarea[name]');return i?i.name:''}
+function txt(el){if(!el)return '';const c=el.cloneNode(true);c.querySelectorAll('.req,small,.hint').forEach(x=>x.remove());return c.textContent.replace(/[*:]\s*$/,'').replace(/\s+/g,' ').trim()}
+function optLabel(i){const l=i.closest('label');return l?l.textContent.replace(/\s+/g,' ').trim():i.value}
+function subTitle(i,f){let n=i.closest('.ch')||i.parentElement;let p=n.previousElementSibling;while(p&&!p.matches('.bol,.brh,.lbl'))p=p.previousElementSibling;return p&&!p.matches('.lbl')?txt(p):''}
+function pill(k,label){LABEL[k]=label;return '<button type="button" class="op" data-k="'+esc(k)+'">'+esc(label)+'</button>'}
+function fieldHTML(f,doc){const k=fkey(f);if(!k)return '';const title=txt(f.querySelector('.lbl'))||k;LABEL[k]=title;
+ let ops='',cur=null;const seen=new Set();
+ f.querySelectorAll('input[type=radio][value],input[type=checkbox][value]').forEach(i=>{const n=i.name;if(!n||n.indexOf('bo_')===0||n.indexOf('br_')===0||n==='t_pr')return;const key=n+'='+i.value;if(seen.has(key))return;seen.add(key);
+  if(n==='s_sys'){const sty=i.closest('.sty');let br='';if(sty){const bs=[...sty.querySelectorAll('.brx input[type=checkbox][name^="br_"]')];if(bs.length)br='<div class="brT">ماركات '+esc(i.value)+':</div><div class="ops">'+bs.map(b=>pill(b.name+'='+b.value,b.value)).join('')+'</div>'}
+   if(cur!==n){if(cur!==null)ops+='</div>';ops+='<div class="ops">';cur=n}ops+='<div class="sys" data-s="'+esc(key)+'">'+pill(key,'❄️ '+optLabel(i))+br+'</div>';return}
+  if(cur!==n){if(cur!==null)ops+='</div>';const st=n!==k?subTitle(i,f):'';ops+=(st?'<div class="sub">'+esc(st)+'</div>':'')+'<div class="ops">';cur=n}
+  ops+=pill(key,optLabel(i).replace(/^data$/,'هدخل بيانات المبنى'))});
+ if(cur!==null)ops+='</div>';
+ if(k==='t_pr'){ops='<div class="sub">تحديد نسبة الأرباح للمندوب (أخضر = مفتوح للمندوب، أحمر = مقفول)</div><div class="ops">'+pill('t_pr=نعم','📈 تحديد نسبة الأرباح')+'</div>'}
+ return '<div class="fld" data-f="'+esc(k)+'" data-txt="'+esc(title)+'"><div class="fh"><span class="ft">'+esc(title)+'</span><button type="button" class="sw" data-k="'+esc(k)+'"></button></div>'+ops+'</div>'}
+async function build(){const r=await fetch('index.html?t='+Date.now(),{cache:'no-store'});const h=await r.text();const doc=new DOMParser().parseFromString(h,'text/html');const frm=doc.getElementById('frm');let out='';
+ const secs=[...frm.children].filter(x=>x.matches('section'));
+ secs.forEach(sec=>{const t=txt(sec.querySelector('h2'))||'';let body='',lastG=null;
+  sec.querySelectorAll('.f').forEach(f=>{if(f.closest('#fblk'))return;const g=f.closest('.grp');const gt=g?txt(g.querySelector('.gt')):'';if(gt&&gt!==lastG){body+='<div class="grpT">'+esc(gt)+'</div>';lastG=gt}body+=fieldHTML(f,doc)});
+  if(body)out+='<div class="card"><h2>'+esc(t)+'</h2>'+body+'</div>'});
+ const fb=doc.getElementById('fblk');if(fb){let body='';fb.querySelectorAll('.yn').forEach(r=>{const i=r.querySelector('input[type=radio]');if(!i)return;const t=txt(r.querySelector('b'));LABEL[i.name]=t;body+='<div class="fld" data-f="'+esc(i.name)+'" data-txt="'+esc(t)+'"><div class="fh"><span class="ft">📎 '+esc(t)+'</span><button type="button" class="sw" data-k="'+esc(i.name)+'"></button></div></div>'});
+  fb.querySelectorAll('.f').forEach(f=>{body+=fieldHTML(f,doc)});out+='<div class="card"><h2>📎 الملفات اللي بتتسلّم مع الطلب</h2>'+body+'</div>'}
+ $('tree').innerHTML=out;paint()}
+function paint(){document.querySelectorAll('[data-k]').forEach(b=>{const k=b.dataset.k,o=OFF.has(k),c=o!==BASE.has(k);
+  if(b.classList.contains('sw')){b.className='sw '+(o?'off':'on')+(c?' chg':'');b.textContent=o?'✕ مقفول':'✓ شغّال';const f=b.closest('.fld');if(f)f.classList.toggle('isoff',o)}
+  else{b.classList.toggle('off',o);b.classList.toggle('chg',c)}});
+ const n=[...new Set([...OFF,...BASE])].filter(k=>OFF.has(k)!==BASE.has(k)).length;$('save').textContent=n?'💾 حفظ وتطبيق ('+n+' تغيير)':'💾 حفظ وتطبيق على النموذج';
+ $('sum').innerHTML='<span>🔴 المقفول دلوقتي: '+[...BASE].length+'</span><span>🟡 تغييرات لسه ما اتحفظتش: '+n+'</span>'+(SAVED.updated?'<span>آخر حفظ: '+esc(new Date(SAVED.updated).toLocaleString('ar-EG'))+'</span>':'')}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(!b)return;const k=b.dataset.k;if(OFF.has(k))OFF.delete(k);else OFF.add(k);paint()});
+$('undo').onclick=()=>{OFF=new Set(BASE);paint();msg('رجعت لآخر حفظ')};
+$('q').addEventListener('input',()=>{const q=$('q').value.trim().toLowerCase();document.querySelectorAll('.fld').forEach(f=>{const t=(f.dataset.txt+' '+f.textContent).toLowerCase();f.style.display=!q||t.indexOf(q)>=0?'':'none'})});
+$('save').onclick=async()=>{if(!TOKEN){msg('سجّل مفتاح الحفظ الأول (فوق)',false);window.scrollTo(0,0);return}
+ const b=$('save');b.disabled=true;b.textContent='⏳ جاري الحفظ…';
+ try{await loadCfg(true);const on=DEF.filter(k=>!OFF.has(k));const off=[...OFF].filter(k=>DEF.indexOf(k)<0).sort();
+  const added=[...OFF].filter(k=>!BASE.has(k)).map(k=>LABEL[k]||k),removed=[...BASE].filter(k=>!OFF.has(k)).map(k=>LABEL[k]||k);
+  const c={v:1,updated:new Date().toISOString(),off,on};
+  const body={message:'أوامر النموذج'+(added.length?' — قفل: '+added.join('، '):'')+(removed.length?' — فتح: '+removed.join('، '):''),content:b64e(JSON.stringify(c,null,1)),branch:'main'};if(SHA)body.sha=SHA;
+  const r=await fetch(API,{method:'PUT',headers:{Authorization:'Bearer '+TOKEN,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify(body)});
+  if(!r.ok){const t=await r.text();throw new Error(r.status+' '+t.slice(0,120))}
+  const j=await r.json();SHA=j.content&&j.content.sha;SAVED=c;BASE=new Set(OFF);paint();msg('✓ اتحفظ — النموذج هيتحدّث عند كل المندوبين خلال دقيقة تقريبًا')}
+ catch(e){msg('ما اتحفظش: '+(String(e.message||e).indexOf('401')===0?'المفتاح منتهي أو غلط — سجّله تاني':String(e.message||e)),false)}
+ b.disabled=false;paint()};
+(async()=>{tokUI();await loadCfg(false);BASE=effOff(SAVED);OFF=new Set(BASE);try{await build()}catch(e){$('tree').innerHTML='<div class="card"><div class="st bad">ما قدرتش أحمّل خانات النموذج — اتأكد إن النت شغال وافتح الصفحة تاني</div></div>'}})();
+})();
+</script>
+</body>
+</html>

@@ -553,5 +553,7 @@
 "صفحة": "page(s)",
 "ملفات DXF / Excel / Word مش بتتعرض كصفحات — بتفضل محفوظة بصيغتها الأصلية جوه نفس الـPDF.": "DXF / Excel / Word files are not shown as pages — they are kept in their original format inside the same PDF.",
 "الطلب بيتأرشف لوحده أول ما تعمل الورقة أو الـPDF.": "Requests are archived automatically as soon as you make the sheet or the PDF.",
-"— أي تعديل بيتحدّث في الأرشيف لوحده": "— any change is updated in the archive automatically"
+"— أي تعديل بيتحدّث في الأرشيف لوحده": "— any change is updated in the archive automatically",
+"تحديد نسبة الأرباح": "Set the profit percentage",
+"اختار لو العميل طالب نسبة أرباح معيّنة": "Choose if the client asked for a specific profit percentage"
 }
