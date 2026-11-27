@@ -117,13 +117,14 @@ input:focus,textarea:focus{outline:3px solid #f2b705;outline-offset:1px}
 /*lng264*/.lng264{display:inline-block;margin:6px 6px 0;padding:6px 16px;border-radius:20px;background:#0f2f57;color:#fff;font:800 .9rem Cairo,sans-serif;text-decoration:none;border:2px solid #f2b705}
 /*val265*/input.bad265{border-color:#c62828!important;background:#fff1f1!important}
 /*fold261*/.ch>label.cx,.ch>.sty.cx{display:none!important}.cxT{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:4px 14px;margin:4px;border:1.5px dashed var(--no,#888);border-radius:10px;background:transparent;color:inherit;font:inherit;font-size:.85rem;cursor:pointer}.prlk{opacity:.55;pointer-events:none;filter:grayscale(1)}
+/*up271*/#fblk .yn{grid-template-columns:minmax(0,1fr) 108px}#fblk .yn label.y{font-size:1.05rem;font-weight:800;background:#e8f0fb;border-color:#0f2f57;color:#0f2f57}#fblk .yn label.y.upon{background:var(--ok);border-color:var(--ok);color:#fff}.upl{grid-column:1/-1}.upl:empty{display:none}.upf{display:flex;align-items:center;gap:8px;padding:6px 10px;margin:4px 0;background:var(--okbg);border:1px solid var(--ok);border-radius:10px}.upn{flex:1;min-width:0;overflow-wrap:anywhere;font-weight:700;font-size:.92rem}.upn small{color:var(--mute);font-weight:600}.upf button{min-height:40px;padding:0 12px;border:2px solid #c62828;border-radius:10px;background:#fff;color:#c62828;font:800 .9rem Cairo,sans-serif;cursor:pointer}.upa{font-size:.8rem;color:var(--mute);font-weight:700;padding:2px 4px}
 /*fold259*/.yn.fx{display:none!important}#fxTog{display:block;width:calc(100% - 32px);margin:8px 16px;min-height:42px;border:2px dashed var(--line);border-radius:10px;background:var(--soft);color:var(--navy);font:800 .9rem Cairo,sans-serif;cursor:pointer}#fxTog[hidden]{display:none!important}.fxok{margin:8px 16px 0;padding:8px 12px;border-radius:10px;background:var(--okbg);color:var(--ok);font-weight:800;font-size:.9rem}.fxok[hidden]{display:none!important}/*pin259*/.meter{position:fixed!important;top:0!important;left:50%!important;transform:translateX(-50%);width:min(820px,calc(100% - 12px));z-index:15!important;margin:0!important;border-radius:0 0 14px 14px!important;border-top:0!important;box-shadow:0 6px 14px -8px #0006!important}
 </style>
 </head>
 <body>
 <header>
 
-<h1>نموذج طلب عرض سعر — مسؤول المبيعات / المهندس <small style="font-size:.6em;opacity:.8">R32</small></h1><div style="display:inline-block;margin-top:4px;background:#e7f6ec;color:#1b7a3d;border-radius:20px;padding:2px 12px;font:800 .8rem Cairo,sans-serif">✔ النموذج المعتمد — إصدار R32 — 26/11/2026</div><a class="lng264" href="en.html?v=R32">English</a>
+<h1>نموذج طلب عرض سعر — مسؤول المبيعات / المهندس <small style="font-size:.6em;opacity:.8">R33</small></h1><div style="display:inline-block;margin-top:4px;background:#e7f6ec;color:#1b7a3d;border-radius:20px;padding:2px 12px;font:800 .8rem Cairo,sans-serif">✔ النموذج المعتمد — إصدار R33 — 27/11/2026</div><a class="lng264" href="en.html?v=R33">English</a>
 <p>يُملأ ويُسلَّم مع ملفاته لمساعد <b style="font-weight:800;font-size:1.15em">م. شريف فتحي</b> <span style="font-weight:600;font-size:.88em">– مساعد المدير العام للشؤون الفنية</span></p>
 </header>
 <div class="wrap">
@@ -171,7 +172,7 @@ input:focus,textarea:focus{outline:3px solid #f2b705;outline-offset:1px}
 <div id="g_profit" class="grp gx"><div class="gh"><span class="gt">نسبة الأرباح</span><span class="gb"></span><span class="ga"></span></div><div class="f"><span class="lbl">نسبة الأرباح</span><span class="hint">🔒 مقفول حاليًا — نسبة الأرباح ثابتة ومحددة من الإدارة</span><div class="ch" data-group="t_pr"><label class="prlk"><input type="checkbox" name="t_pr" value="نعم" disabled>🔒 تحديد نسبة الأرباح (مقفول)</label></div><div id="prbox" hidden style="margin-top:10px"><label class="lbl" for="t_prp">النسبة المستهدفة % <span class="req">*</span></label><span class="hint">من 15% لغاية 200%</span><input id="t_prp" name="t_prp" type="number" inputmode="numeric" min="15" max="200" step="1" placeholder="مثال: 25"><div class="warn" id="w_pr">النسبة لازم تكون رقم من 15 لغاية 200.</div></div></div></div>
 <div id="g_note" class="grp gx"><div class="gh"><span class="gt">ملاحظات العميل</span><span class="gb"></span><span class="ga"></span></div><div class="f"><label class="lbl" for="t_note">ملاحظات العميل / طلبات خاصة</label><textarea id="t_note" name="t_note" placeholder="أي حاجة العميل طلبها: مكان الوحدات الخارجية، أعمال خارج العرض، مدة تنفيذ…"></textarea></div></div>
 </section>
-<div id="fhold" hidden><div id="fblk"><div class="fsub">📎 الملفات اللي هتتسلّم مع الطلب</div><p class="hint dxf263" style="margin:10px 16px 0;background:#fff7d6;border:2px solid #e0a800;border-radius:10px;padding:8px 10px;color:#5a4300;font-weight:700">📐 أي مخطط يتبعت بصيغة DXF أو PDF — مش DWG، ومش صورة. الأحسن DXF + PDF مع بعض. (من الأوتوكاد: Save As ← DXF)</p>
+<div id="fhold" hidden><div id="fblk"><div class="fsub">📎 الملفات اللي هتتسلّم مع الطلب</div><p class="hint dxf263" style="margin:10px 16px 0;background:#fff7d6;border:2px solid #e0a800;border-radius:10px;padding:8px 10px;color:#5a4300;font-weight:700">📎 اضغط «📎 ارفع» جنب كل بند وارفع الملف نفسه — كل الملفات بتتضم جوه نفس الـPDF.<br>📐 أي مخطط يتبعت بصيغة DXF أو PDF — مش DWG، ومش صورة. الأحسن DXF + PDF مع بعض. (من الأوتوكاد: Save As ← DXF)</p>
 <p class="hint hl-red" id="f_hint" style="margin:10px 16px 0">في التكييف لازم واحد على الأقل ✓ من: جدول كميات، أو مخطط تكييف / ميكانيك، أو Single Line تكييف، أو شوب دروينج تكييف، أو قائمة وحدات، أو سكتش المندوب على المخطط — وإلا الطلب يترفض. علّم ✓ على اللي موجود، واللي مش موجود سيبه.</p>
 <div class="yn"><b>مخطط معماري (DXF / PDF)</b><label class="y"><input type="radio" name="a_arch" value="نعم">✓</label></div><div class="yn"><b>مخطط إنشائي (DXF / PDF)</b><label class="y"><input type="radio" name="a_str" value="نعم">✓</label></div><div id="ldbox" class="f" hidden style="background:var(--soft)"><span class="lbl">بيانات حساب الأحمال (عشان المخطط معماري / إنشائي) <span class="req">*</span></span><span class="hint">مفيش دراسة أحمال مع المخطط، فإحنا هنحسبها. «اعتيادي» = حسبتنا على أسوأ حالة (كل واجهة كأنها غرب، بياناتنا المعتمدة). ولو عندك بيانات المبنى اختار «هدخل بيانات المبنى» وهنحسب عليها.</span><div class="ch"><label><input type="radio" name="ld_mode" value="اعتيادي">اعتيادي: حسبتنا على أسوأ حالة (Worst Case)</label><label><input type="radio" name="ld_mode" value="data">هدخل بيانات المبنى</label></div><div id="ldf" hidden><span class="bol">ارتفاع الدور <span class="req">*</span></span><div class="ch" data-ld="ld_h"><label><input type="radio" name="ld_h" value="اعتيادي">اعتيادي</label><label><input type="radio" name="ld_h" value="3 م">3 م</label><label><input type="radio" name="ld_h" value="3.5 م">3.5 م</label><label><input type="radio" name="ld_h" value="4 م (فلل)">4 م (فلل)</label><label><input type="radio" name="ld_h" value="أخرى">أخرى</label></div><input id="ld_h_o" name="ld_h_o" type="text" placeholder="اكتب الارتفاع بالمتر" hidden><span class="bol">عزل الحوائط <span class="req">*</span></span><div class="ch" data-ld="ld_w"><label><input type="radio" name="ld_w" value="اعتيادي">اعتيادي</label><label><input type="radio" name="ld_w" value="بدون عزل (بلوك 20 سم)">بدون عزل (بلوك 20 سم)</label><label><input type="radio" name="ld_w" value="معزولة (عزل حراري)">معزولة (عزل حراري)</label></div><span class="bol">عزل السقف <span class="req">*</span></span><div class="ch" data-ld="ld_r"><label><input type="radio" name="ld_r" value="اعتيادي">اعتيادي</label><label><input type="radio" name="ld_r" value="بدون عزل">بدون عزل</label><label><input type="radio" name="ld_r" value="عزل 5 سم">عزل 5 سم</label><label><input type="radio" name="ld_r" value="معزول حسب الكود السعودي">معزول حسب الكود السعودي</label></div><span class="bol">الزجاج <span class="req">*</span></span><div class="ch" data-ld="ld_g"><label><input type="radio" name="ld_g" value="اعتيادي">اعتيادي</label><label><input type="radio" name="ld_g" value="سنجل عادي">سنجل عادي</label><label><input type="radio" name="ld_g" value="دبل جلاس">دبل جلاس</label><label><input type="radio" name="ld_g" value="دبل جلاس عاكس / Low-E">دبل جلاس عاكس / Low-E</label></div><span class="bol">اتجاه الشمال <span class="req">*</span></span><div class="ch" data-ld="ld_o"><label><input type="radio" name="ld_o" value="اعتيادي">اعتيادي</label><label><input type="radio" name="ld_o" value="محدد على المخطط">محدد على المخطط</label></div><span class="bol">عدد الأشخاص في الأماكن <span class="req">*</span></span><div class="ch" data-ld="ld_p"><label><input type="radio" name="ld_p" value="اعتيادي">اعتيادي</label><label><input type="radio" name="ld_p" value="حسب فرش المخطط">حسب فرش المخطط</label><label><input type="radio" name="ld_p" value="مكتوب على المخطط / السكتش">مكتوب على المخطط / السكتش</label></div></div></div><div class="yn"><b>مخطط تكييف / ميكانيك (DXF / PDF)</b><label class="y"><input type="radio" name="a_mech" value="نعم">✓</label></div><div class="yn"><b>شوب دروينج تكييف — DXF / PDF (عليه مسار النحاس أو نقدر نحدده)</b><label class="y"><input type="radio" name="a_shop" value="نعم">✓</label></div><div class="yn"><b>مخطط Single Line (DXF / PDF)</b><label class="y"><input type="radio" name="a_sl" value="نعم">✓</label></div><div class="yn"><b>جدول كميات BOQ</b><label class="y"><input type="radio" name="a_boq" value="نعم">✓</label></div><div class="yn"><b>قائمة وحدات (أعداد وقدرات)</b><label class="y"><input type="radio" name="a_units" value="نعم">✓</label></div><div class="yn"><b>سكتش المندوب على المخطط: مكان كل وحدة وهتغذي إيه (ولو بخط اليد)</b><label class="y"><input type="radio" name="a_sk" value="نعم">✓</label></div><div class="yn"><b>مواصفات</b><label class="y"><input type="radio" name="a_spec" value="نعم">✓</label></div><div class="yn"><b>طلب عرض من العميل (RFQ)</b><label class="y"><input type="radio" name="a_rfq" value="نعم">✓</label></div><div class="yn"><b>عرض وكيل / مورد</b><label class="y"><input type="radio" name="a_sup" value="نعم">✓</label></div><div class="yn"><b>نموذج «طلب اتصال عميل»</b><label class="y"><input type="radio" name="a_call" value="نعم">✓</label></div><div class="yn"><b>صور الموقع</b><label class="y"><input type="radio" name="a_pics" value="نعم">✓</label></div>
 <div class="warn" id="w_basis">مفيش أساس للتسعير: لازم مخطط، أو جدول كميات، أو قائمة وحدات بالأعداد والقدرات.</div>
@@ -189,7 +190,7 @@ input:focus,textarea:focus{outline:3px solid #f2b705;outline-offset:1px}
 </div>
 <div id="arc"><div class="in"><div class="top"><span>📂 أرشيف طلباتي <small id="arcCnt"></small><small>محفوظ على جهازك ومتصفحك ده</small></span><button type="button" id="arcX">إغلاق</button></div><div class="sr"><input id="arcQ" type="search" placeholder="🔎 دوّر باسم العميل أو المشروع"></div><div id="arcList"></div></div></div>
 <div class="sheetbg" id="sheetbg"><div class="sheet" id="sheet"></div>
-<div class="sh-bar"><button type="button" id="pdf" class="pdfb">📤 حفظ PDF وإرساله واتساب</button><span id="pdfmsg">احفظ الورقة PDF وابعتها مع الملفات للسكرتير</span><button type="button" id="shx">رجوع للفورم</button></div></div>
+<div class="sh-bar"><button type="button" id="pdf" class="pdfb">📤 حفظ PDF وإرساله واتساب</button><span id="pdfmsg">الملفات اللي رفعتها بتتضم جوه نفس الـPDF — ملف واحد كامل</span><button type="button" id="shx">رجوع للفورم</button></div></div>
 <div class="cpk" id="cpk"><div class="in"><div class="top"><span>اختار المدينة</span><button type="button" id="cpx">إغلاق</button></div><div class="list" id="clist"></div></div></div>
 <div class="toast" id="toast"></div><div id="rej"><div class="in"><h3>⛔ الطلب مرفوض</h3><div>طلب التكييف ما ينفعش يتبعت من غير واحد على الأقل من الملفات دي (علّم عليه ✓ في قسم الملفات):</div><ul><li>جدول كميات BOQ</li><li>مخطط تكييف / ميكانيك</li><li>مخطط Single Line تكييف</li><li>شوب دروينج تكييف</li><li>قائمة وحدات (أعداد وقدرات)</li><li>سكتش المندوب على المخطط: مكان كل وحدة وهتغذي إيه (ولو بخط اليد)</li></ul><div style="font-size:.9rem;opacity:.8">المخطط المعماري أو الإنشائي لوحده مش كفاية.</div><div class="bt"><button type="button" class="go" id="rejgo">روح لقسم الملفات</button><button type="button" class="x" id="rejx">إغلاق</button></div></div></div>
 <script>
@@ -251,7 +252,7 @@ function req(){const out=[];frm.querySelectorAll('[data-req]').forEach(el=>{cons
 function rows(){const r=rows0();if(plan())r.splice(3,0,['3-أ) بيانات حساب الأحمال',ldRows()]);return r}function rows0(){return [
  ['1) العميل',[['اسم العميل',val('c_name'),1],['نوع العميل',ov('c_type'),1],['المخاطَب على الغلاف',addr()],phRow(),mlRow(),['المدينة',city(),1],['موقع المشروع',val('c_site')],['المالك / الاستشاري',val('c_cons')]]],
  ['2) الطلب والمشروع',[['اسم المشروع',val('p_name'),1],['نوع المشروع',ov('p_type'),1],['مهندس المبيعات',ov('r_eng'),1],['رقم اتصال العميل',call(),1]]],
- ['3) الملفات المسلّمة',ATT.map(a=>[a[1],val(a[0])==='نعم'?'✓ مرفق':''])],
+ ['3) الملفات المسلّمة',ATT.map(a=>[a[1],upTxt(a[0])])],
  ['4) نطاق العمل',[['النطاق',ov('s_scope'),1],['الأعمال المطلوبة',itv('s_disc'),1]].concat(has('تكييف')?[['أساس تسعير التكييف',ov('b_hvac'),1],['أنواع التكييف',sysv(),1],['الماركات لكل نوع',brands(),1],['الداكت والجريلات',ov('s_duct'),1],['النحاس',copper(),1]]:[]).concat([].concat(...DISC.filter(d=>d[2]&&has(d[0])).map(d=>{const x=BSS.find(z=>z[1]===d[0]);return [['أساس تسعير '+d[0],ov(x[0]),1],['بنود '+d[0],itv(d[2]),1],['ماركات '+d[0],val(x[2])]]}))).concat(has('أخرى')?[['الأعمال الأخرى',val('s_disc_o'),1],['أساس تسعير الأعمال الأخرى',ov('b_ot'),1],['ماركات الأعمال الأخرى',val('m_ot')]]:[]) ],
  ['5) السعر والشروط',[['سعر مستهدف',target(),1],['الدفعات',pay(),1],['نسبة الأرباح المستهدفة',prv()],['ملاحظات',val('t_note')]]]]}
 function text(){const L=['نموذج طلب عرض سعر',''];if(rejected()){L.push('⛔ الطلب مرفوض — أسباب الرفض:');reasons().forEach((x,i)=>L.push((i+1)+') '+x));L.push('')}
@@ -259,6 +260,7 @@ function text(){const L=['نموذج طلب عرض سعر',''];if(rejected()){L.
  const miss=req().filter(r=>!r[1]).map(r=>r[0]);if(miss.length)L.push('⚠️ ناقص: '+miss.join('، '));
  return L.join('\n')}
 function update(){
+ upSync();
  const r=req(),done=r.filter(x=>x[1]).length,pct=Math.round(done/r.length*100);
  $('mtxt').textContent='اكتمل '+done+' من '+r.length;$('mpct').textContent=pct+'%';const b=$('mbar');b.style.width=pct+'%';b.classList.toggle('full',pct===100);
  const miss=r.filter(x=>!x[1]).map(x=>x[0]);$('miss').textContent=miss.length?('⛔ ناقص '+miss.length+': '+miss.join('، ')):'كل الخانات الإلزامية مكتملة ✓';$('miss').style.color=miss.length?'':'var(--ok)';
@@ -284,7 +286,7 @@ $('cp').addEventListener('click',()=>{const t=text();const ok=()=>toast('اتن�
  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,()=>fb(t)&&ok());else if(fb(t))ok();});
 function fb(t){try{const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();const r=document.execCommand('copy');a.remove();return r}catch(e){return false}}
 let armed=false;$('clr').addEventListener('click',e=>{if(!armed){armed=true;$('clr').innerHTML='<i>⚠️</i>تأكيد؟';setTimeout(()=>{armed=false;$('clr').innerHTML='<i>🧹</i>مسح'},3000);return}
- frm.reset();armed=false;$('clr').innerHTML='<i>🧹</i>مسح';try{localStorage.removeItem(KEY)}catch(x){};$('c_city').value='';cityUI();update();toast('اتمسحت كل الخانات')});
+ frm.reset();armed=false;$('clr').innerHTML='<i>🧹</i>مسح';try{localStorage.removeItem(KEY)}catch(x){};$('c_city').value='';cityUI();upClear();toast('اتمسحت كل الخانات والملفات')});
 
 const CG=[["منطقة الرياض", "#0b5d3b", "#e2f3e9", ["الرياض", "الخرج", "الدرعية", "المجمعة", "الزلفي", "شقراء", "الدوادمي", "القويعية", "عفيف", "وادي الدواسر", "الأفلاج"]], ["منطقة مكة المكرمة", "#a11d1d", "#fde4e4", ["جدة", "مكة المكرمة", "الطائف", "رابغ", "القنفذة"]], ["منطقة المدينة المنورة", "#1d4ea3", "#e2ebfb", ["المدينة المنورة", "ينبع", "العُلا"]], ["المنطقة الشرقية", "#8a5700", "#fcefd2", ["الدمام", "الخبر", "الظهران", "الجبيل", "الأحساء", "القطيف", "حفر الباطن", "الخفجي"]], ["منطقة القصيم", "#5a2b90", "#eee5fa", ["بريدة", "عنيزة", "الرس", "البكيرية"]], ["منطقة عسير", "#0d6b70", "#dbf2f2", ["أبها", "خميس مشيط", "محايل عسير", "بيشة", "النماص"]], ["الشمال", "#6a4626", "#f2e9df", ["حائل", "الجوف (سكاكا)", "القريات", "عرعر", "تبوك"]], ["الجنوب", "#3b4252", "#e8ebf0", ["جازان", "نجران", "الباحة"]]];
 function cityUI(){const v=$('c_city').value,b=$('cbtn');$('cbtxt').textContent=v?(v==='أخرى'?'أخرى (اكتبها تحت)':v):'اختار المدينة';b.classList.toggle('has',!!v);}
@@ -323,6 +325,77 @@ frm.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('.cx
 frm.addEventListener('change',e=>{const c=e.target.closest&&e.target.closest('.ch');if(c)delete c.dataset.open;setTimeout(()=>{prLock();chFold()},0)});
 setTimeout(()=>{prLock();chFold()},0);
 
+/*up271 — رفع الملف من نفس زرار كل بند + ضمّ كل الملفات جوه نفس الـPDF*/
+var UPF={};const UPDRW=['a_arch','a_str','a_mech','a_shop','a_sl'];
+const upT=s=>window.__tr?window.__tr(s):s;
+const upExt=n=>(String(n).split('.').pop()||'').toLowerCase();
+const upSz=b=>b>=1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB';
+const upEsc=t=>String(t==null?'':t).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+function upN(id){return ((UPF&&UPF[id])||[]).length}
+function upTxt(id){const f=(UPF&&UPF[id])||[];return f.length?'✓ مرفق جوه الـPDF — '+f.map(x=>x.name).join('، '):''}
+function upSync(){if(!UPF)return;ATT.forEach(a=>{frm.querySelectorAll('input[name="'+a[0]+'"]').forEach(x=>{x.checked=upN(a[0])>0})})}
+/*IndexedDB: الملفات تفضل على الجهاز مع المسودة ومع الأرشيف*/
+function upDB(){return new Promise((ok,no)=>{try{const r=indexedDB.open('nefal-qr-files',1);r.onupgradeneeded=()=>r.result.createObjectStore('f');r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)}catch(e){no(e)}})}
+async function upPut(k,v){try{const d=await upDB();await new Promise((ok,no)=>{const t=d.transaction('f','readwrite');t.objectStore('f').put(v,k);t.oncomplete=ok;t.onerror=()=>no(t.error);t.onabort=()=>no(t.error)});return true}catch(e){return false}}
+async function upGet(k){try{const d=await upDB();return await new Promise((ok,no)=>{const r=d.transaction('f').objectStore('f').get(k);r.onsuccess=()=>ok(r.result||null);r.onerror=()=>no(r.error)})}catch(e){return null}}
+async function upDelK(k){try{const d=await upDB();const t=d.transaction('f','readwrite');t.objectStore('f').delete(k)}catch(e){}}
+let upWarned=false;
+async function upDraft(){const ok=await upPut('draft',UPF);if(!ok&&!upWarned){upWarned=true;toast('الملفات كبيرة على ذاكرة المتصفح — هتفضل مرفوعة لحد ما تقفل الصفحة')}}
+function upStore(id){if(id)upPut('arc:'+id,UPF)}
+async function upLoad(id){const v=await upGet('arc:'+id);UPF=v||{};upDraft();upPaint();update()}
+function upDel(id){upDelK('arc:'+id)}
+function upClear(){UPF={};upDelK('draft');upPaint();update()}
+/*الزراير*/
+function upRows(){document.querySelectorAll('#fblk .yn').forEach(r=>{const i=r.querySelector('input[type=radio]');if(!i||r.dataset.up)return;const id=i.name;r.dataset.up=id;
+ const lb=r.querySelector('label.y'),fi=document.createElement('input');fi.type='file';fi.multiple=true;fi.className='upi';
+ fi.accept=UPDRW.indexOf(id)>=0?'.dxf,.pdf,application/pdf':(id==='a_pics'||id==='a_sk'?'image/*,.pdf,.dxf':'');r.appendChild(fi);
+ const ls=document.createElement('div');ls.className='upl';r.appendChild(ls);
+ lb.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();fi.value='';fi.click()});
+ fi.addEventListener('change',()=>{const add=[...fi.files],bad=[];const okF=add.filter(f=>{const x=upExt(f.name);
+   if(x==='dwg'){bad.push(f.name+' (DWG مش مقبول — احفظه DXF أو PDF)');return false}
+   if(UPDRW.indexOf(id)>=0&&x!=='dxf'&&x!=='pdf'){bad.push(f.name+' (المخطط DXF أو PDF بس)');return false}
+   if(!f.size){bad.push(f.name+' (الملف فاضي)');return false}return true});
+  if(okF.length){const cur=UPF[id]||[];okF.forEach(f=>{if(!cur.some(c=>c.name===f.name&&c.size===f.size))cur.push(f)});UPF[id]=cur;upDraft();toast('✓ اترفع '+okF.length+' ملف — هيتضم جوه نفس الـPDF')}
+  if(bad.length)toast('⛔ '+bad.join('، '));upPaint();update();frm.dispatchEvent(new Event('change',{bubbles:true}))});
+ ls.addEventListener('click',e=>{const b=e.target.closest('[data-ux]');if(!b)return;e.preventDefault();const k=+b.dataset.ux;(UPF[id]||[]).splice(k,1);if(!upN(id))delete UPF[id];upDraft();upPaint();update();frm.dispatchEvent(new Event('change',{bubbles:true}))});})}
+function upPaint(){upRows();upSync();document.querySelectorAll('#fblk .yn[data-up]').forEach(r=>{const id=r.dataset.up,f=UPF[id]||[],lb=r.querySelector('label.y'),ls=r.querySelector('.upl');
+ lb.classList.toggle('upon',f.length>0);let k=lb.querySelector('.upk');if(!k){[...lb.childNodes].forEach(n=>{if(n.nodeType===3)n.remove()});k=document.createElement('span');k.className='upk';lb.appendChild(k)}k.textContent=f.length?'✓ '+f.length:'📎 ارفع';
+ ls.innerHTML=f.length?f.map((x,k)=>'<div class="upf"><span class="upn">📄 <bdi>'+upEsc(x.name)+'</bdi> <small>'+upSz(x.size)+'</small></span><button type="button" data-ux="'+k+'">✕ شيل</button></div>').join('')+'<div class="upa">＋ لإضافة ملف كمان اضغط الزرار الأخضر</div>':''})}
+/*دمج الملفات في الـPDF*/
+function upCanvasPage(lines,opt){const c=document.createElement('canvas');c.width=1240;c.height=1754;const g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.direction='rtl';g.textAlign='right';
+ let y=opt&&opt.top||140;lines.forEach(l=>{g.font=(l.w||700)+' '+(l.s||34)+'px Cairo, sans-serif';g.fillStyle=l.c||'#15202e';
+  const words=upT(l.t).split(' ');let ln='';const out=[];words.forEach(w=>{const t=ln?ln+' '+w:w;if(g.measureText(t).width>1080&&ln){out.push(ln);ln=w}else ln=t});if(ln)out.push(ln);
+  out.forEach(t=>{if(l.box){g.fillStyle=l.box;g.fillRect(70,y-(l.s||34)-10,1100,(l.s||34)+28);g.fillStyle=l.c||'#15202e'}g.fillText(t,1170,y);y+=(l.s||34)*1.55});y+=(l.gap||8)});
+ return c.toDataURL('image/jpeg',.9)}
+async function upImgBytes(f){const x=upExt(f.name);if(x==='jpg'||x==='jpeg')return {b:await f.arrayBuffer(),t:'jpg'};if(x==='png')return {b:await f.arrayBuffer(),t:'png'};
+ const bm=await createImageBitmap(f);const c=document.createElement('canvas');c.width=bm.width;c.height=bm.height;c.getContext('2d').drawImage(bm,0,0);
+ const bl=await new Promise(r=>c.toBlob(r,'image/jpeg',.9));return {b:await bl.arrayBuffer(),t:'jpg'}}
+async function upMerge(pdf){const list=[];ATT.forEach(a=>(UPF[a[0]]||[]).forEach(f=>list.push({id:a[0],lab:a[1],f})));
+ if(!list.length)return pdf.output('blob');
+ if(!window.PDFLib)await ld('https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js');
+ const L=PDFLib,doc=await L.PDFDocument.load(pdf.output('arraybuffer')),formN=doc.getPageCount(),A4=[595.28,841.89];
+ const addJpgPage=async u=>{const im=await doc.embedJpg(u);const p=doc.addPage(A4);p.drawImage(im,{x:0,y:0,width:A4[0],height:A4[1]});return p};
+ for(const it of list){const x=upExt(it.f.name);it.where='';
+  try{
+   if(x==='pdf'){const src=await L.PDFDocument.load(await it.f.arrayBuffer(),{ignoreEncryption:true});it.raw=doc.getPageCount()+2;
+    await addJpgPage(upCanvasPage([{t:'📎 مرفق مع نموذج طلب عرض سعر',s:30,c:'#5a4300',box:'#fff7d6',gap:30},{t:it.lab,s:46,w:800,c:'#0f2f57'},{t:it.f.name,s:32,c:'#334'},{t:src.getPageCount()+' صفحة — بتبدأ في الصفحة الجاية',s:30,c:'#1b7a3d'}],{top:520}));
+    const pg=await doc.copyPages(src,src.getPageIndices());pg.forEach(p=>doc.addPage(p));it.pages=pg.length;it.kind='pdf'}
+   else if(/^(jpe?g|png|webp|gif|bmp|heic|heif)$/.test(x)||(it.f.type||'').indexOf('image/')===0){const im=await upImgBytes(it.f);const e=im.t==='png'?await doc.embedPng(im.b):await doc.embedJpg(im.b);
+    const land=e.width>e.height,P=land?[A4[1],A4[0]]:A4,m=20,hd=26,s=Math.min((P[0]-2*m)/e.width,(P[1]-2*m-hd)/e.height);const p=doc.addPage(P);it.raw=doc.getPageCount();
+    const cap=await doc.embedJpg(upCapImg(it.lab+' — '+it.f.name,Math.round(P[0]*3)));p.drawImage(cap,{x:m,y:P[1]-m-hd+2,width:P[0]-2*m,height:hd-4});
+    p.drawImage(e,{x:(P[0]-e.width*s)/2,y:m+(P[1]-2*m-hd-e.height*s)/2,width:e.width*s,height:e.height*s});it.pages=1;it.kind='img'}
+   else throw 0;
+  }catch(err){await doc.attach(await it.f.arrayBuffer(),it.f.name,{mimeType:it.f.type||'application/octet-stream',description:it.lab,creationDate:new Date(it.f.lastModified||Date.now()),modificationDate:new Date()});it.kind='emb'}}
+ const PER=8,nIx=Math.ceil(list.length/PER),emb=list.some(it=>it.kind==='emb');
+ for(let q=0;q<nIx;q++){const ix=[{t:'📎 فهرس الملفات المرفقة جوه الـPDF ده'+(nIx>1?' ('+(q+1)+'/'+nIx+')':''),s:44,w:800,c:'#0f2f57',gap:20}];
+  list.slice(q*PER,q*PER+PER).forEach((it,j)=>{const i=q*PER+j;ix.push({t:(i+1)+') '+it.lab,s:32,w:800,c:'#0f2f57',gap:0});ix.push({t:'• '+it.f.name+' ('+upSz(it.f.size)+')',s:28,c:'#334',gap:0});
+   ix.push({t:it.kind==='emb'?'↳ ملف مضمّن جوه الـPDF — افتحه من أيقونة المرفقات 📎 في Adobe Acrobat Reader':'↳ من صفحة '+(it.raw+nIx)+' — '+it.pages+' صفحة',s:26,c:it.kind==='emb'?'#a3005f':'#1b7a3d',gap:18})});
+  if(emb&&q===nIx-1)ix.push({t:'ملفات DXF / Excel / Word مش بتتعرض كصفحات — بتفضل محفوظة بصيغتها الأصلية جوه نفس الـPDF.',s:26,c:'#5a4300',box:'#fff7d6',gap:10});
+  const ixImg=await doc.embedJpg(upCanvasPage(ix,{top:130}));const ip=doc.insertPage(formN+q,A4);ip.drawImage(ixImg,{x:0,y:0,width:A4[0],height:A4[1]})}
+ const out=await doc.save();return new Blob([out],{type:'application/pdf'})}
+function upCapImg(t,w){const c=document.createElement('canvas');c.width=w;c.height=Math.round(w*22/560);const g=c.getContext('2d');g.fillStyle='#fff7d6';g.fillRect(0,0,c.width,c.height);g.fillStyle='#5a4300';g.font='700 '+Math.round(c.height*.62)+'px Cairo, sans-serif';g.direction='rtl';g.textAlign='right';g.textBaseline='middle';g.fillText(upT('📎 '+t),c.width-12,c.height/2);return c.toDataURL('image/jpeg',.9)}
+setTimeout(()=>{upPaint();update();upGet('draft').then(v=>{if(v&&Object.keys(v).length){UPF=v;upPaint();update();frm.dispatchEvent(new Event('change',{bubbles:true}))}})},0);
+
 /*fold259 — بعد ما الملف الإجباري يتعلّم، باقي الملفات تختفي*/
 let FX=false;
 function fileFold(){const blk=$('fblk');if(!blk)return;let tog=$('fxTog'),okm=$('fxOk');
@@ -355,7 +428,7 @@ function arcSave(){const a=arcGet();if(!a){toast('الأرشيف مش متاح �
  const e={id,at:now,client:cl,project:pr,rep:ov('r_eng'),rej:rejected(),pct:$('mpct').textContent,data:d};
  const i=a.findIndex(x=>x.id===id);if(i>=0){e.first=a[i].first||a[i].at;a[i]=e}else{e.first=now;a.unshift(e)}
  if(!arcSet(a)){toast('ما اتحفظش — مساحة المتصفح مليانة، امسح طلبات قديمة من الأرشيف');return}
- CUR=id;arcBtn();toast(i>=0?'✓ اتحدّث الطلب في أرشيفك':'✓ اتأرشف الطلب عندك على الجهاز')}
+ CUR=id;upStore(id);arcBtn();toast(i>=0?'✓ اتحدّث الطلب في أرشيفك':'✓ اتأرشف الطلب عندك على الجهاز')}
 function arcShow(){const all=arcGet();if(!all){toast('الأرشيف مش متاح على المتصفح ده');return}
  const a=all.slice().sort((x,y)=>x.at<y.at?1:-1),q=String($('arcQ').value||'').trim().toLowerCase();
  const L=a.filter(e=>!q||(e.client+' '+e.project+' '+(e.rep||'')).toLowerCase().indexOf(q)>=0);
@@ -363,10 +436,10 @@ function arcShow(){const all=arcGet();if(!all){toast('الأرشيف مش متا
  $('arcCnt').textContent=a.length+' طلب';$('arc').classList.add('on')}
 function arcOpen(id,b,asSheet){const e=(arcGet()||[]).find(x=>x.id===id);if(!e)return;
  if(id!==CUR&&arcDirty()&&ldArm!==id){ldArm=id;const t=b.textContent;b.textContent='⚠️ الطلب اللي في الفورم مش متأرشف — اضغط تاني';b.classList.add('warnb');setTimeout(()=>{if(ldArm===id){ldArm='';b.textContent=t;b.classList.remove('warnb')}},5000);return}
- ldArm='';fillForm(e.data);CUR=id;$('arc').classList.remove('on');window.scrollTo(0,0);
+ ldArm='';fillForm(e.data);CUR=id;upLoad(id);$('arc').classList.remove('on');window.scrollTo(0,0);
  if(asSheet)sheet();else toast('اتفتح طلب '+(e.client||e.project)+' — أي تعديل اضغط «أرشفة الطلب» يتحدّث')}
 function arcDel(id,b){if(dlArm!==id){dlArm=id;b.textContent='اضغط تاني للتأكيد';setTimeout(()=>{if(dlArm===id){dlArm='';b.textContent='🗑️ حذف'}},4000);return}
- dlArm='';const a=(arcGet()||[]).filter(x=>x.id!==id);arcSet(a);if(CUR===id)CUR=null;arcBtn();arcShow();toast('اتحذف الطلب من الأرشيف')}
+ dlArm='';upDel(id);const a=(arcGet()||[]).filter(x=>x.id!==id);arcSet(a);if(CUR===id)CUR=null;arcBtn();arcShow();toast('اتحذف الطلب من الأرشيف')}
 $('arcSave').addEventListener('click',arcSave);$('arcOpen').addEventListener('click',()=>{$('arcQ').value='';arcShow()});
 $('arcX').addEventListener('click',()=>$('arc').classList.remove('on'));$('arcQ').addEventListener('input',arcShow);
 $('arcList').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.ao)arcOpen(b.dataset.ao,b,false);else if(b.dataset.as)arcOpen(b.dataset.as,b,true);else if(b.dataset.ad)arcDel(b.dataset.ad,b)});
@@ -387,7 +460,7 @@ function sheet(){
  const row=(k,v,r)=>'<tr><th>'+k+'</th><td class="'+(!v&&r?'miss':'')+'">'+(v?'<bdi>'+esc(v)+'</bdi>':(r?'ناقص':'—'))+'</td></tr>';
  const miss=req().filter(r=>!r[1]).map(r=>r[0]);
  $('sheet').innerHTML='<div class="sh-hd"><span>'+ds+'</span></div>'+
- '<div class="sh-t">نموذج طلب عرض سعر <span style="font-size:11px;font-weight:700">(معتمد R32)</span>'+(rejected()?' — مرفوض':'')+'</div>'+(rejected()?'<div class="rj-ban"><div class="t">⛔ الطلب مرفوض</div><div class="h">أسباب الرفض:</div><ol>'+reasons().map((x,i)=>'<li>'+(i+1)+') '+esc(x)+'</li>').join('')+'</ol><div class="rj-sw"><div class="rj-st"><span>مرفوض</span><img alt="" src="'+SIG+'"><small>م. شريف فتحي</small></div></div></div>':'')+
+ '<div class="sh-t">نموذج طلب عرض سعر <span style="font-size:11px;font-weight:700">(معتمد R33)</span>'+(rejected()?' — مرفوض':'')+'</div>'+(rejected()?'<div class="rj-ban"><div class="t">⛔ الطلب مرفوض</div><div class="h">أسباب الرفض:</div><ol>'+reasons().map((x,i)=>'<li>'+(i+1)+') '+esc(x)+'</li>').join('')+'</ol><div class="rj-sw"><div class="rj-st"><span>مرفوض</span><img alt="" src="'+SIG+'"><small>م. شريف فتحي</small></div></div></div>':'')+
  '<div style="position:relative">'+rows().map(([h,rs])=>'<table><caption>'+h+'</caption>'+rs.map(r=>row(r[0],r[1],r[2])).join('')+'</table>').join('')+'</div>'+
  (miss.length?'<p style="color:#c62828;margin:0 0 8px">⚠️ ناقص: '+esc(miss.join('، '))+'</p>':'')+ chk()+
  '<div class="sh-ft"><span>يُسلَّم لمساعد <b style="font-weight:800;font-size:1.15em">م. شريف فتحي</b> <span style="font-weight:600;font-size:.88em">– مساعد المدير العام للشؤون الفنية</span></span><span>'+ds+'</span></div>';
@@ -431,11 +504,11 @@ $('pdf').addEventListener('click',async()=>{
   const dlp=(window.claude&&window.claude.use)?Promise.race([claude.use('downloads').catch(()=>null),new Promise(r=>setTimeout(()=>r(null),4000))]):Promise.resolve(null);
   const pdf=await buildPdf();
   const nm=(val('c_name')||'').replace(/[\\/:*?"<>|]/g,' ').trim().slice(0,60);
-  const fn=(rejected()?'مرفوض - ':'')+'نموذج طلب عرض سعر'+(nm?' - '+nm:'')+'.pdf',bl=pdf.output('blob');
+  b.textContent='⏳ جاري ضمّ الملفات في الـPDF…';const fn=(rejected()?'مرفوض - ':'')+'نموذج طلب عرض سعر'+(nm?' - '+nm:'')+'.pdf',bl=await upMerge(pdf);
   let ok=false;const dl=await dlp;
   if(dl){try{await dl.save({filename:fn,data:bl});ok=true}catch(e){if(e&&e.code==='declined')throw e}}
   if(!ok){try{ok=await tryShare(new File([bl],fn,{type:'application/pdf'}))}catch(e){if(e&&e.code==='declined')throw e}}
-  if(ok){m.textContent='✓ اتحفظ الـPDF — ابعته مع الملفات للسكرتير';toast('اتحفظ الـPDF')}
+  if(ok){m.textContent='✓ اتحفظ الـPDF — كل الملفات جوه نفس الملف، ابعته للسكرتير';toast('اتحفظ الـPDF')}
   else{pdfBox(bl,fn,pdf.__imgs||[]);m.textContent='الـPDF جاهز — اضغط «ابعت الـPDF على واتساب» أو «نزّل الـPDF»'}
  }catch(e){const c=e&&e.code;
   m.textContent=c==='declined'?'ما اتحفظش — اضغط «حفظ PDF» تاني ووافق على الحفظ':'حصلت مشكلة في تجهيز الـPDF — اتأكد إن النت شغال وجرّب تاني';}
